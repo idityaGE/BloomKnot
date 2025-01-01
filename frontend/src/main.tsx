@@ -1,10 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
+import { ThemeProvider } from "@/components/theme/theme-provider"
 import './index.css'
 import Layout from './Layout.tsx'
-import { SigninForm } from './components/auth/signin-form.tsx';
-import { SignupForm } from './components/auth/signup-form.tsx';
+import { SignInForm } from './components/auth/Signin-form.tsx';
+import { SignUpForm } from './components/auth/Signup-form.tsx';
 
 // Docs : https://reactrouter.com/start/library/routing
 const Router = () => {
@@ -13,10 +14,10 @@ const Router = () => {
       <Route path="/" element={<Layout />} >
 
         <Route path="auth" element={<div className="flex items-center justify-center h-screen"> <Outlet /> </div>}>
-          <Route path="signin" element={<SigninForm />} />
-          <Route path="signup" element={<SignupForm />} />
+          <Route path="signin" element={<SignInForm />} />
+          <Route path="signup" element={<SignUpForm />} />
         </Route>
-        
+
       </Route>
     </Routes>
   );
@@ -25,8 +26,13 @@ const Router = () => {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
-      <Router />
-    </BrowserRouter>
+    <ThemeProvider
+      defaultTheme="light"
+      storageKey="vite-ui-theme"
+    >
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+    </ThemeProvider>
   </StrictMode>,
 )
