@@ -9,6 +9,7 @@ import { SignInForm } from '@/components/auth/Signin-form.tsx';
 import { SignUpForm } from '@/components/auth/Signup-form.tsx';
 import { DetailForm } from '@/components/auth/Details-form.tsx';
 import WeddingStylePage from './pages/WeddingStylePage.tsx';
+import VenueListPage from './pages/VenueListPage.tsx';
 
 // Docs : https://reactrouter.com/start/library/routing
 const Router = () => {
@@ -23,6 +24,7 @@ const Router = () => {
         </Route>
 
         <Route path='wedding-style' element={<WeddingStylePage />} />
+        <Route path='venue-list' element={<VenueListPage />} />
 
       </Route>
     </Routes>

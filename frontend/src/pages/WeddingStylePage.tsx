@@ -1,4 +1,4 @@
-import { WeddingStyleCard } from "@/components/wedding-style/WeddingStyleCard"
+import { WeddingStyleCard } from "@/components/WeddingStyleCard"
 
 const weddingStyles = [
   {
