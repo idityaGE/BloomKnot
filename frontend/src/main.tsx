@@ -10,12 +10,14 @@ import { SignUpForm } from '@/components/auth/Signup-form.tsx';
 import { DetailForm } from '@/components/auth/Details-form.tsx';
 import WeddingStylePage from './pages/WeddingStylePage.tsx';
 import VenueListPage from './pages/VenueListPage.tsx';
+import LandingPage from './components/landing/Landing.tsx';
 
 // Docs : https://reactrouter.com/start/library/routing
 const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />} >
+        <Route index element={<LandingPage />} />
 
         <Route path="auth" element={<div className="flex items-center justify-center min-h-screen"> <Outlet /> </div>}>
           <Route path="signin" element={<SignInForm />} />
