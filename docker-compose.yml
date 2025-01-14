@@ -1,0 +1,70 @@
+version: "3"
+
+volumes:
+  database:
+    driver: local
+
+# Define a network, which allows containers to communicate
+# with each other, by using their container name as a hostname
+networks:
+  app_network:
+    external: true
+
+services:
+  users:
+    container_name: users-app
+    build:
+      context: .
+      dockerfile: ./apps/users/Dockerfile
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - app_network
+
+  vendors:
+    container_name: vendors-app
+    build:
+      context: .
+      dockerfile: ./apps/vendors/Dockerfile
+    restart: always
+    ports:
+      - 3001:3001
+    networks:
+      - app_network
+  
+  admin:
+    container_name: admin-app
+    build:
+      context: .
+      dockerfile: ./apps/admin/Dockerfile
+    restart: always
+    ports:
+      - 3002:3002
+    networks:
+      - app_network
+
+  backend:
+    container_name: backend-app
+    build:
+      context: .
+      dockerfile: ./apps/backend/Dockerfile
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - app_network
+  
+  postgres:
+    platform: linux/x86_64
+    image: postgres:13
+    container_name: bloomknot-postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: bloomknot
+      POSTGRES_PASSWORD: bloomknot
+      POSTGRES_DB: bloomknot
+    volumes:
+      - database:/var/lib/postgresql/data
