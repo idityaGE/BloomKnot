@@ -1,11 +1,16 @@
-import LandingPage from "@/components/landing/Landing";
+import { Button } from "@/components/ui/button"
+import { Navigation } from "@/components/navigation"
+import { Hero } from "@/components/hero"
+import { WhyChooseUs } from "@/components/why-choose-us"
+import { Footer } from "@/components/footer"
 
-const Home = () => {
+export default function Home() {
   return (
-    <>
-      <LandingPage />
-    </>
-  );
+    <main className="min-h-screen bg-background">
+      <Navigation />
+      <Hero />
+      <WhyChooseUs />
+      <Footer />
+    </main>
+  )
 }
-
-export default Home;
