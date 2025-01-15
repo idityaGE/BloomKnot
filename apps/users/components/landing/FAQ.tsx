@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Accordion,
   AccordionContent,
@@ -29,7 +28,7 @@ const faqData = [
   }
 ];
 
-const FAQ: React.FC = () => {
+const FAQ = () => {
   return (
     <Accordion type="single" collapsible className="w-full">
       {faqData.map((item, index) => (

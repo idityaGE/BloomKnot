@@ -1,18 +1,33 @@
+"use client"
+
 import React from 'react';
 import { ChevronRight, Calendar, MapPin, Utensils, Camera, Music, Gift, Heart, Users, Star } from 'lucide-react';
 import FAQ from './FAQ';
-import { Link } from 'react-router';
+import Link from 'next/link';
+import Image from 'next/image';
 
-const LandingPage: React.FC = () => {
+const LandingPage = () => {
   return (
     <div className="bg-cream text-gold">
       {/* Hero Section */}
-      <section className="relative py-44 flex items-center justify-center" style={{ backgroundImage: "url('/main_bg.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+      <section className="relative py-44 flex items-center justify-center">
+        <div className="absolute inset-0">
+          <Image
+            src="/main_bg.png"
+            alt="Wedding Background"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+        </div>
         <div className="relative z-10 text-center text-white">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">Plan Your Perfect Wedding</h1>
           <p className="text-xl md:text-2xl mb-8">All-in-one platform for your dream wedding</p>
-          <Link to='/auth/signup' className="bg-gold text-cream px-6 py-3 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-colors">
+          <Link
+            href="/auth/signup"
+            className="bg-gold text-cream px-6 py-3 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-colors inline-block"
+          >
             Start Planning
           </Link>
         </div>
@@ -137,9 +152,12 @@ const LandingPage: React.FC = () => {
             <h2 className="text-4xl font-bold mb-4">Ready to Start Planning?</h2>
             <p className="text-xl">Join thousands of happy couples who planned their perfect wedding with us</p>
           </div>
-          <button className="bg-cream text-gold px-8 py-3 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-colors inline-flex items-center">
+          <Link
+            href="/auth/signup"
+            className="bg-cream text-gold px-8 py-3 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-colors inline-flex items-center"
+          >
             Get Started <ChevronRight size={20} className="ml-2" />
-          </button>
+          </Link>
         </div>
       </section>
     </div>
