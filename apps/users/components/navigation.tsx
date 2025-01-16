@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button"
 import { HeartHandshake } from "lucide-react"
 
 const navigation = [
-  { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
   { name: "Testimonials", href: "/testimonials" },
@@ -50,9 +49,11 @@ export function Navigation() {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Button size="lg">
-            Sign Up
-          </Button>
+          <Link href="/signin">
+            <Button size="lg">
+              Sign In
+            </Button>
+          </Link>
         </div>
       </nav>
     </header>
