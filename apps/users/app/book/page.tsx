@@ -14,7 +14,8 @@ import { Entertainment } from "@/components/booking/entertainment"
 import { Services } from "@/components/booking/services"
 import { Addons } from "@/components/booking/addons"
 import { Summary } from "@/components/booking/summary"
-import { Progress } from "@/components/ui/progress"
+import { Stepper } from "@/components/booking/stepper"
+
 
 const steps = [
   { id: 1, title: "Wedding Type", component: WeddingType },
@@ -46,8 +47,6 @@ export default function BookingPage() {
 
   const CurrentStepComponent = steps[currentStep - 1].component
 
-  const progress = (currentStep / steps.length) * 100
-
   const handleNext = () => {
     if (currentStep < steps.length) {
       setCurrentStep(currentStep + 1)
@@ -62,6 +61,11 @@ export default function BookingPage() {
     }
   }
 
+  const handleStepClick = (step: number) => {
+    setCurrentStep(step)
+    window.scrollTo(0, 0)
+  }
+
   const updateFormData = (field: string, value: any) => {
     setFormData((prev) => ({
       ...prev,
@@ -73,12 +77,16 @@ export default function BookingPage() {
     <div className="min-h-screen bg-background">
       <Navigation />
       <main className="container mx-auto px-4 pt-32 pb-24">
-        <div className="max-w-3xl mx-auto">
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-center mb-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="mb-16">
+            <h1 className="text-3xl font-bold text-center mb-12">
               {steps[currentStep - 1].title}
             </h1>
-            <Progress value={progress} className="h-2" />
+            <Stepper
+              steps={steps}
+              currentStep={currentStep}
+              onStepClick={handleStepClick}
+            />
           </div>
 
           <AnimatePresence mode="wait">
@@ -92,6 +100,7 @@ export default function BookingPage() {
               <CurrentStepComponent
                 formData={formData}
                 updateFormData={updateFormData}
+                onEdit={handleStepClick}
               />
             </motion.div>
           </AnimatePresence>

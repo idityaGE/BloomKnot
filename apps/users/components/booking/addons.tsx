@@ -3,52 +3,58 @@
 import { Card } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
-import {
-  Cake,
-  Car,
-  Flower2,
-  Gift,
-  GlassWater,
-  PartyPopper,
-} from "lucide-react"
+import { Input } from "@/components/ui/input"
+import { useState } from "react"
 
 const addons = [
   {
-    id: "welcome-drinks",
-    title: "Welcome Drinks",
-    description: "Refreshing beverages for guests upon arrival",
-    icon: GlassWater,
+    id: "cake",
+    title: "Wedding Cake",
+    description: "Custom designed multi-tier wedding cake",
+    image: "https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&q=80",
+    price: "From $500",
+    customizable: true
   },
   {
-    id: "dessert-bar",
-    title: "Dessert Bar",
-    description: "Variety of sweets and treats",
-    icon: Cake,
+    id: "painter",
+    title: "Live Painter",
+    description: "Artist capturing your special moments on canvas",
+    image: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&q=80",
+    price: "From $800",
+    customizable: false
   },
   {
-    id: "flower-wall",
-    title: "Flower Wall",
-    description: "Beautiful backdrop for photos",
-    icon: Flower2,
+    id: "gifts",
+    title: "Return Gifts",
+    description: "Curated selection of memorable gifts for guests",
+    image: "https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&q=80",
+    price: "From $10/guest",
+    customizable: true
   },
   {
-    id: "luxury-transport",
-    title: "Luxury Transport",
-    description: "Premium vehicles for the wedding party",
-    icon: Car,
+    id: "invitations",
+    title: "Custom Invitations",
+    description: "Beautifully designed and printed invitations",
+    image: "https://images.unsplash.com/photo-1544125945-59e2f786d2f3?auto=format&fit=crop&q=80",
+    price: "From $5/piece",
+    customizable: true
   },
   {
-    id: "favors",
-    title: "Wedding Favors",
-    description: "Special gifts for your guests",
-    icon: Gift,
+    id: "makeup",
+    title: "Makeup Services",
+    description: "Professional makeup for the wedding party",
+    image: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&q=80",
+    price: "From $300/person",
+    customizable: true
   },
   {
-    id: "fireworks",
-    title: "Fireworks Display",
-    description: "Spectacular end to your celebration",
-    icon: PartyPopper,
-  },
+    id: "drone",
+    title: "Drone Coverage",
+    description: "Aerial photography and videography",
+    image: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&q=80",
+    price: "From $600",
+    customizable: false
+  }
 ]
 
 interface AddonsProps {
@@ -57,48 +63,87 @@ interface AddonsProps {
 }
 
 export function Addons({ formData, updateFormData }: AddonsProps) {
-  const handleAddonToggle = (addonId: string) => {
-    const currentAddons = formData.addons || []
-    const updatedAddons = currentAddons.includes(addonId)
-      ? currentAddons.filter((id: string) => id !== addonId)
-      : [...currentAddons, addonId]
+  const [selected, setSelected] = useState<string[]>(formData.addons || [])
+  const [quantities, setQuantities] = useState<Record<string, number>>(
+    formData.addonQuantities || {}
+  )
 
-    updateFormData("addons", updatedAddons)
+  const handleToggle = (value: string) => {
+    const newSelected = selected.includes(value)
+      ? selected.filter(item => item !== value)
+      : [...selected, value]
+    
+    setSelected(newSelected)
+    updateFormData("addons", newSelected)
+
+    if (!newSelected.includes(value)) {
+      const newQuantities = { ...quantities }
+      delete newQuantities[value]
+      setQuantities(newQuantities)
+      updateFormData("addonQuantities", newQuantities)
+    }
+  }
+
+  const handleQuantityChange = (id: string, value: string) => {
+    const quantity = parseInt(value) || 0
+    const newQuantities = { ...quantities, [id]: quantity }
+    setQuantities(newQuantities)
+    updateFormData("addonQuantities", newQuantities)
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <p className="text-lg text-center text-muted-foreground">
-        Enhance your celebration with these special additions
+        Enhance your wedding with these special add-ons
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {addons.map((addon) => (
-          <Label
+          <Card
             key={addon.id}
-            className="cursor-pointer"
-            htmlFor={addon.id}
+            className={`relative overflow-hidden transition-all ${
+              selected.includes(addon.id) ? "ring-2 ring-primary" : ""
+            }`}
           >
-            <Card className={`p-4 transition-all ${formData.addons?.includes(addon.id) ? "ring-2 ring-primary" : ""
-              }`}>
-              <div className="flex items-start space-x-4">
-                <addon.icon className="w-5 h-5 mt-1 text-primary" />
-                <div className="flex-1">
-                  <div className="flex items-center space-x-2">
-                    <Checkbox
-                      id={addon.id}
-                      checked={formData.addons?.includes(addon.id)}
-                      onCheckedChange={() => handleAddonToggle(addon.id)}
-                    />
-                    <span className="font-medium">{addon.title}</span>
-                  </div>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {addon.description}
-                  </p>
-                </div>
+            <img
+              src={addon.image}
+              alt={addon.title}
+              className="w-full h-48 object-cover"
+            />
+            <div className="p-4">
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id={addon.id}
+                  checked={selected.includes(addon.id)}
+                  onCheckedChange={() => handleToggle(addon.id)}
+                />
+                <Label htmlFor={addon.id} className="font-semibold">
+                  {addon.title}
+                </Label>
               </div>
-            </Card>
-          </Label>
+              <p className="mt-2 text-sm text-muted-foreground">
+                {addon.description}
+              </p>
+              <p className="mt-1 text-sm font-medium">
+                {addon.price}
+              </p>
+              {addon.customizable && selected.includes(addon.id) && (
+                <div className="mt-4">
+                  <Label htmlFor={`${addon.id}-quantity`} className="text-sm">
+                    Quantity
+                  </Label>
+                  <Input
+                    id={`${addon.id}-quantity`}
+                    type="number"
+                    min="1"
+                    className="mt-1"
+                    value={quantities[addon.id] || ""}
+                    onChange={(e) => handleQuantityChange(addon.id, e.target.value)}
+                  />
+                </div>
+              )}
+            </div>
+          </Card>
         ))}
       </div>
     </div>
