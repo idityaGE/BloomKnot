@@ -51,7 +51,7 @@ export function Navigation() {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Button size="lg">
-            Plan Your Wedding
+            Sign Up
           </Button>
         </div>
       </nav>

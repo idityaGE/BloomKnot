@@ -54,9 +54,6 @@ export function Hero() {
                   Book Your Dream Wedding
                 </Button>
               </Link>
-              <Button size="lg" variant="outline" className="text-lg text-white hover:text-white">
-                Contact Us
-              </Button>
             </motion.div>
           </div>
         </div>
