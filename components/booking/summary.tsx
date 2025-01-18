@@ -9,7 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import { Check, Edit2 } from "lucide-react"
 
@@ -92,7 +91,6 @@ export function Summary({ formData, onEdit }: SummaryProps) {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
-          <ScrollArea className="h-[600px] pr-4">
             <div className="space-y-8">
               <SummarySection
                 title="Wedding Type"
@@ -235,7 +233,6 @@ export function Summary({ formData, onEdit }: SummaryProps) {
                 }
               />
             </div>
-          </ScrollArea>
         </div>
 
         <div className="lg:col-span-1">

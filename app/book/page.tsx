@@ -4,7 +4,6 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { WeddingType } from "@/components/booking/wedding-type"
 import { Location } from "@/components/booking/location"
 import { Venue } from "@/components/booking/venue"
@@ -113,16 +112,14 @@ export default function BookingPage() {
             >
               Previous
             </Button>
-            <Button
+            {!(currentStep === steps.length) && <Button
               onClick={handleNext}
-              disabled={currentStep === steps.length}
             >
-              {currentStep === steps.length - 1 ? "Review" : "Next"}
-            </Button>
+              Next
+            </Button>}
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   )
 }

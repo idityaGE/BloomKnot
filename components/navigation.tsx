@@ -28,9 +28,9 @@ export function Navigation() {
   return (
     <header className={cn(
       "fixed top-0 w-full z-50 transition-all duration-200",
-      isScrolled ? "bg-background/80 backdrop-blur-md shadow-sm" : "bg-transparent"
+      isScrolled ? "bg-background/50 backdrop-blur-md shadow-sm" : "bg-transparent"
     )}>
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8 text-white" aria-label="Global">
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
             <HeartHandshake className="h-8 w-8" />

@@ -17,7 +17,7 @@ export function Hero() {
           className="w-full h-full object-cover"
         >
         </Image>
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/30" />
       </div>
 
       {/* Content */}
