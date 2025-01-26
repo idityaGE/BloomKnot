@@ -1,4 +1,3 @@
-
 import { Hero } from "@/components/hero"
 import { WhyChooseUs } from "@/components/why-choose-us"
 import { Footer } from "@/components/footer/footer"
