@@ -13,6 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import Image from "next/image"
 
 const venues = [
   {
@@ -121,7 +122,7 @@ export function Venue({ formData, updateFormData }: VenueProps) {
             <Card className={`relative overflow-hidden transition-all ${
               formData.venue === venue.id ? "ring-2 ring-primary" : ""
             }`}>
-              <img
+              <Image
                 src={venue.image}
                 alt={venue.title}
                 className="w-full h-48 object-cover"

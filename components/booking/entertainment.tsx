@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Textarea } from "@/components/ui/textarea"
 import { useState } from "react"
+import Image from "next/image"
 
 const entertainmentOptions = [
   {
@@ -75,7 +76,7 @@ export function Entertainment({ formData, updateFormData }: EntertainmentProps) 
               selected.includes(option.id) ? "ring-2 ring-primary" : ""
             }`}
           >
-            <img
+            <Image
               src={option.image}
               alt={option.title}
               className="w-full h-48 object-cover"

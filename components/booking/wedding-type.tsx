@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Textarea } from "@/components/ui/textarea"
 import { useState } from "react"
+import Image from "next/image"
 
 const weddingTypes = [
   {
@@ -67,7 +68,8 @@ export function WeddingType({ formData, updateFormData }: WeddingTypeProps) {
             <Card className={`relative overflow-hidden transition-all ${
               formData.weddingType === type.id ? "ring-2 ring-primary" : ""
             }`}>
-              <img
+              <Image
+                width={350}
                 src={type.image}
                 alt={type.title}
                 className="w-full h-48 object-cover"

@@ -6,6 +6,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Textarea } from "@/components/ui/textarea"
 import { useState } from "react"
+import Image from "next/image"
 
 const cuisineTypes = [
   {
@@ -83,7 +84,7 @@ export function Cuisine({ formData, updateFormData }: CuisineProps) {
             <Card className={`relative overflow-hidden transition-all ${
               formData.cuisine === cuisine.id ? "ring-2 ring-primary" : ""
             }`}>
-              <img
+              <Image
                 src={cuisine.image}
                 alt={cuisine.title}
                 className="w-full h-48 object-cover"

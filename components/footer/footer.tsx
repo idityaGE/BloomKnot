@@ -16,7 +16,7 @@ const navigation = {
     {
       name: "Instagram",
       href: "#",
-      icon: (props: any) => (
+      icon: () => (
         <svg
           fill="currentColor"
           viewBox="0 0 24 24"
@@ -34,7 +34,7 @@ const navigation = {
     {
       name: "Twitter",
       href: "#",
-      icon: (props: any) => (
+      icon: () => (
         <svg
           xmlns='http://www.w3.org/2000/svg'
           width='70'
@@ -53,7 +53,7 @@ const navigation = {
     {
       name: "LinkedIn",
       href: "#",
-      icon: (props: any) => (
+      icon: () => (
         <svg
           xmlns='http://www.w3.org/2000/svg'
           width='100%'
@@ -112,7 +112,7 @@ function Footer() {
                 key={item.name}
                 href={item.href}
                 className='sm:w-auto w-full  grid place-content-center 2xl:h-28 h-32 2xl:p-5 p-5 rounded-lg'>
-                {item.icon({ className: "sm:w-10 w-8 text-blue-500" })}
+                {item.icon()}
               </Link>
             ))}
           </div>

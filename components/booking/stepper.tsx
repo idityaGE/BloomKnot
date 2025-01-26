@@ -34,7 +34,7 @@ export function Stepper({ steps, currentStep, onStepClick }: StepperProps) {
                 <button
                   onClick={() => onStepClick(step.id)}
                   className={cn(
-                    "relative z-10 flex h-8 w-8 items-center justify-center rounded-full transition-all",
+                    "relative flex h-8 w-8 items-center justify-center rounded-full transition-all",
                     isCompleted ? "bg-primary" : isCurrent ? "bg-primary" : "bg-muted",
                     "hover:ring-2 hover:ring-offset-2 hover:ring-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                   )}

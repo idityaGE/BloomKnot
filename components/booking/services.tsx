@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useState } from "react"
+import Image from "next/image"
 
 const preWeddingServices = [
   {
@@ -111,7 +112,7 @@ export function Services({ formData, updateFormData }: ServicesProps) {
                 className={`relative overflow-hidden transition-all ${preWeddingSelected.includes(service.id) ? "ring-2 ring-primary" : ""
                   }`}
               >
-                <img
+                <Image
                   src={service.image}
                   alt={service.title}
                   className="w-full h-48 object-cover"
@@ -147,7 +148,7 @@ export function Services({ formData, updateFormData }: ServicesProps) {
                 className={`relative overflow-hidden transition-all ${postWeddingSelected.includes(service.id) ? "ring-2 ring-primary" : ""
                   }`}
               >
-                <img
+                <Image
                   src={service.image}
                   alt={service.title}
                   className="w-full h-48 object-cover"

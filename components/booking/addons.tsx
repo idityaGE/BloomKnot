@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { useState } from "react"
+import Image from "next/image"
 
 const addons = [
   {
@@ -105,7 +106,7 @@ export function Addons({ formData, updateFormData }: AddonsProps) {
               selected.includes(addon.id) ? "ring-2 ring-primary" : ""
             }`}
           >
-            <img
+            <Image
               src={addon.image}
               alt={addon.title}
               className="w-full h-48 object-cover"

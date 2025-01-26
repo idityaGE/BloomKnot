@@ -6,6 +6,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useState } from "react"
+import Image from "next/image"
 
 const themes = [
   {
@@ -78,7 +79,7 @@ export function Theme({ formData, updateFormData }: ThemeProps) {
             <Card className={`relative overflow-hidden transition-all ${
               formData.theme === theme.id ? "ring-2 ring-primary" : ""
             }`}>
-              <img
+              <Image
                 src={theme.image}
                 alt={theme.title}
                 className="w-full h-48 object-cover"

@@ -3,6 +3,7 @@
 import { Card } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import Image from "next/image"
 
 const locations = [
   {
@@ -57,7 +58,7 @@ export function Location({ formData, updateFormData }: LocationProps) {
             <Card className={`relative overflow-hidden transition-all ${
               formData.location === location.id ? "ring-2 ring-primary" : ""
             }`}>
-              <img
+              <Image
                 src={location.image}
                 alt={location.title}
                 className="w-full h-48 object-cover"

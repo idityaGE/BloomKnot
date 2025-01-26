@@ -19,9 +19,9 @@ interface SummaryProps {
 }
 
 export function Summary({ formData, onEdit }: SummaryProps) {
-  const formatPrice = (price: string) => {
-    return price.replace("From ", "")
-  }
+  // const formatPrice = (price: string) => {
+  //   return price.replace("From ", "")
+  // }
 
   const calculateTotal = () => {
     let total = 0
