@@ -46,7 +46,7 @@ interface CuisineProps {
 
 export function Cuisine({ formData, updateFormData }: CuisineProps) {
   const [selectedVariants, setSelectedVariants] = useState<string[]>(formData.cuisineVariants || [])
-  
+
   const handleCuisineChange = (value: string) => {
     updateFormData("cuisine", value)
     setSelectedVariants([])
@@ -57,7 +57,7 @@ export function Cuisine({ formData, updateFormData }: CuisineProps) {
     const newVariants = selectedVariants.includes(variant)
       ? selectedVariants.filter(v => v !== variant)
       : [...selectedVariants, variant]
-    
+
     setSelectedVariants(newVariants)
     updateFormData("cuisineVariants", newVariants)
   }
@@ -81,10 +81,9 @@ export function Cuisine({ formData, updateFormData }: CuisineProps) {
             className="cursor-pointer"
             htmlFor={cuisine.id}
           >
-            <Card className={`relative overflow-hidden transition-all ${
-              formData.cuisine === cuisine.id ? "ring-2 ring-primary" : ""
-            }`}>
-              <Image
+            <Card className={`relative overflow-hidden transition-all ${formData.cuisine === cuisine.id ? "ring-2 ring-primary" : ""
+              }`}>
+              <Image width={400} height={250}
                 src={cuisine.image}
                 alt={cuisine.title}
                 className="w-full h-48 object-cover"

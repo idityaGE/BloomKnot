@@ -65,11 +65,9 @@ export function WeddingType({ formData, updateFormData }: WeddingTypeProps) {
             className="cursor-pointer"
             htmlFor={type.id}
           >
-            <Card className={`relative overflow-hidden transition-all ${
-              formData.weddingType === type.id ? "ring-2 ring-primary" : ""
-            }`}>
-              <Image
-                width={350}
+            <Card className={`relative overflow-hidden transition-all ${formData.weddingType === type.id ? "ring-2 ring-primary" : ""
+              }`}>
+              <Image width={400} height={250}
                 src={type.image}
                 alt={type.title}
                 className="w-full h-48 object-cover"

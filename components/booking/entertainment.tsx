@@ -57,7 +57,7 @@ export function Entertainment({ formData, updateFormData }: EntertainmentProps) 
     const newSelected = selected.includes(value)
       ? selected.filter(item => item !== value)
       : [...selected, value]
-    
+
     setSelected(newSelected)
     updateFormData("entertainment", newSelected)
   }
@@ -72,11 +72,10 @@ export function Entertainment({ formData, updateFormData }: EntertainmentProps) 
         {entertainmentOptions.map((option) => (
           <Card
             key={option.id}
-            className={`relative overflow-hidden transition-all ${
-              selected.includes(option.id) ? "ring-2 ring-primary" : ""
-            }`}
+            className={`relative overflow-hidden transition-all ${selected.includes(option.id) ? "ring-2 ring-primary" : ""
+              }`}
           >
-            <Image
+            <Image width={400} height={250}
               src={option.image}
               alt={option.title}
               className="w-full h-48 object-cover"

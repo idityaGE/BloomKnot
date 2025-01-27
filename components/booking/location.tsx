@@ -55,10 +55,9 @@ export function Location({ formData, updateFormData }: LocationProps) {
             className="cursor-pointer"
             htmlFor={location.id}
           >
-            <Card className={`relative overflow-hidden transition-all ${
-              formData.location === location.id ? "ring-2 ring-primary" : ""
-            }`}>
-              <Image
+            <Card className={`relative overflow-hidden transition-all ${formData.location === location.id ? "ring-2 ring-primary" : ""
+              }`}>
+              <Image width={400} height={250}
                 src={location.image}
                 alt={location.title}
                 className="w-full h-48 object-cover"

@@ -54,8 +54,8 @@ export function Venue({ formData, updateFormData }: VenueProps) {
   })
 
   const filteredVenues = venues.filter((venue) => {
-    const capacityMatch = venue.capacity >= filters.capacity[0] && 
-                         venue.capacity <= filters.capacity[1]
+    const capacityMatch = venue.capacity >= filters.capacity[0] &&
+      venue.capacity <= filters.capacity[1]
     const styleMatch = filters.style === "all" || venue.style === filters.style
     return capacityMatch && styleMatch
   })
@@ -119,10 +119,9 @@ export function Venue({ formData, updateFormData }: VenueProps) {
             className="cursor-pointer"
             htmlFor={venue.id}
           >
-            <Card className={`relative overflow-hidden transition-all ${
-              formData.venue === venue.id ? "ring-2 ring-primary" : ""
-            }`}>
-              <Image
+            <Card className={`relative overflow-hidden transition-all ${formData.venue === venue.id ? "ring-2 ring-primary" : ""
+              }`}>
+              <Image width={400} height={250}
                 src={venue.image}
                 alt={venue.title}
                 className="w-full h-48 object-cover"

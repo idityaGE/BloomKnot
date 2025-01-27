@@ -73,7 +73,7 @@ export function Addons({ formData, updateFormData }: AddonsProps) {
     const newSelected = selected.includes(value)
       ? selected.filter(item => item !== value)
       : [...selected, value]
-    
+
     setSelected(newSelected)
     updateFormData("addons", newSelected)
 
@@ -102,11 +102,10 @@ export function Addons({ formData, updateFormData }: AddonsProps) {
         {addons.map((addon) => (
           <Card
             key={addon.id}
-            className={`relative overflow-hidden transition-all ${
-              selected.includes(addon.id) ? "ring-2 ring-primary" : ""
-            }`}
+            className={`relative overflow-hidden transition-all ${selected.includes(addon.id) ? "ring-2 ring-primary" : ""
+              }`}
           >
-            <Image
+            <Image width={400} height={250}
               src={addon.image}
               alt={addon.title}
               className="w-full h-48 object-cover"

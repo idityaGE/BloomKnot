@@ -112,7 +112,7 @@ export function Services({ formData, updateFormData }: ServicesProps) {
                 className={`relative overflow-hidden transition-all ${preWeddingSelected.includes(service.id) ? "ring-2 ring-primary" : ""
                   }`}
               >
-                <Image
+                <Image width={400} height={250}
                   src={service.image}
                   alt={service.title}
                   className="w-full h-48 object-cover"
@@ -148,7 +148,7 @@ export function Services({ formData, updateFormData }: ServicesProps) {
                 className={`relative overflow-hidden transition-all ${postWeddingSelected.includes(service.id) ? "ring-2 ring-primary" : ""
                   }`}
               >
-                <Image
+                <Image width={400} height={250}
                   src={service.image}
                   alt={service.title}
                   className="w-full h-48 object-cover"

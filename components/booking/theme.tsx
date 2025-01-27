@@ -76,10 +76,9 @@ export function Theme({ formData, updateFormData }: ThemeProps) {
             className="cursor-pointer"
             htmlFor={theme.id}
           >
-            <Card className={`relative overflow-hidden transition-all ${
-              formData.theme === theme.id ? "ring-2 ring-primary" : ""
-            }`}>
-              <Image
+            <Card className={`relative overflow-hidden transition-all ${formData.theme === theme.id ? "ring-2 ring-primary" : ""
+              }`}>
+              <Image width={400} height={250}
                 src={theme.image}
                 alt={theme.title}
                 className="w-full h-48 object-cover"
