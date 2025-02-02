@@ -7,7 +7,9 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-background">
-      <Preloader />
+      //TODO: Need to work on it
+      {/* <Preloader /> */}
+
       <Hero />
       <WhyChooseUs />
       <Footer />
