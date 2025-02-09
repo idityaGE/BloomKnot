@@ -4,6 +4,7 @@ import { prisma } from "@/lib/db";
 import { openAPI } from "better-auth/plugins";
 import { admin } from "better-auth/plugins";
 import { sendEmail } from "@/actions/mail";
+import { getVerificationEmail, getPinResetEmail } from '@/templates'
 
 export const auth = betterAuth({
   // #========= Database Adapter =========#
@@ -35,25 +36,17 @@ export const auth = betterAuth({
     enabled: true,
     requireEmailVerification: true,
     sendResetPassword: async ({ user, url }) => {
-      await sendEmail({
-        to: user.email,
-        subject: "Reset your password",
-        text: `Click the link to reset your password: ${url}`,
-      });
+      await sendEmail(getPinResetEmail(user.email, url));
     },
   },
-  
+
   // #========= Email Verification =========#
   emailVerification: {
     sendOnSignUp: true,
     autoSignInAfterVerification: true,
     sendVerificationEmail: async ({ user, token }) => {
       const verificationUrl = `${process.env.BETTER_AUTH_URL}/api/auth/verify-email?token=${token}&callbackURL=${process.env.EMAIL_VERIFICATION_CALLBACK_URL}`;
-      await sendEmail({
-        to: user.email,
-        subject: "Verify your email address",
-        text: `Click the link to verify your email: ${verificationUrl}`,
-      });
+      await sendEmail(getVerificationEmail(user.email, verificationUrl));
     },
   },
 
@@ -71,7 +64,7 @@ export const auth = betterAuth({
   },
 
   // #========= Custom Config =========#
-  
+
 } satisfies BetterAuthOptions);
 
 export type Session = typeof auth.$Infer.Session;

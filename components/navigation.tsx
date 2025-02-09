@@ -34,7 +34,7 @@ export function Navigation() {
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
             <HeartHandshake className="h-8 w-8" />
-            <span className="font-semibold text-xl">Bloomknot</span>
+            <span className="font-semibold text-xl">BloomKnot</span>
           </Link>
         </div>
         <div className="hidden lg:flex lg:gap-x-12">

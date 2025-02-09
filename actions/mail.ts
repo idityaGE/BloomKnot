@@ -1,42 +1,61 @@
 "use server";
 
-import sgMail from "@sendgrid/mail";
+import nodemailer from "nodemailer";
+
+interface MailOptions {
+  to: string;
+  subject: string;
+  html: string;
+}
+
 
 export async function sendEmail({
   to,
   subject,
-  text,
-}: {
-  to: string;
-  subject: string;
-  text: string;
-}) {
-  if (!process.env.SENDGRID_API_KEY) {
-    throw new Error("SENDGRID_API_KEY environment variable is not set");
+  html,
+}: MailOptions) {
+  if (!process.env.MAIL_SERVICE) {
+    throw new Error("MMAIL_SERVICE environment variable is not set");
+  }
+  if (!process.env.MAIL_USER) {
+    throw new Error("MAIL_USER environment variable is not set");
+  }
+  if (!process.env.MAIL_PASS) {
+    throw new Error("MAIL_PASS environment variable is not set");
+  }
+  if (!process.env.MAIL_HOST) {
+    throw new Error("MAIL_HOST environment variable is not set");
   }
   if (!process.env.EMAIL_FROM) {
     throw new Error("EMAIL_FROM environment variable is not set");
   }
 
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
-  const message = {
-    to: to.toLowerCase().trim(),
-    from: process.env.EMAIL_FROM,
-    subject: subject.trim(),
-    text: text.trim(),
-  };
+  const transporter = nodemailer.createTransport({
+    service: process.env.MAIL_SERVICE,
+    host: process.env.MAIL_HOST,
+    port: 587,
+    secure: false,
+    auth: {
+      user: process.env.MAIL_USER,
+      pass: process.env.MAIL_PASS,
+    },
+  });
 
   try {
-    const [response] = await sgMail.send(message);
+    const info = await transporter.sendMail({
+      from: `"BloomKnot 🎀" <${process.env.EMAIL_FROM}>`,
+      to,
+      subject,
+      html,
+    })
 
-    if (response.statusCode !== 202) {
-      throw new Error(`SendGrid API returned status code ${response.statusCode}`);
+    if (info.rejected.length !== 0) {
+      throw new Error(`Failed to send email to ${info.rejected.join(", ")}`);
     }
 
     return {
       success: true,
-      messageId: response.headers['x-message-id'],
+      messageId: info.messageId,
     };
 
   } catch (error) {

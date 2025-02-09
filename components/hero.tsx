@@ -10,7 +10,7 @@ export function Hero() {
     <div className="relative min-h-screen">
       {/* Video Background */}
       <div className="absolute inset-0 overflow-hidden">
-        <Image width={400} height={250}
+        <Image
           src="/hero-bg.png"
           layout="fill"
           alt=""
