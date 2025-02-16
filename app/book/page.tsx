@@ -34,7 +34,7 @@ export default function BookingPage() {
     weddingType: "",
     location: "",
     venue: "",
-    cuisine: "",
+    cuisine: [],
     theme: "",
     entertainment: [],
     services: {

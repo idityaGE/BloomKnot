@@ -2,7 +2,6 @@
 
 import { Card } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Textarea } from "@/components/ui/textarea"
 import { useState } from "react"
@@ -45,12 +44,26 @@ interface CuisineProps {
 }
 
 export function Cuisine({ formData, updateFormData }: CuisineProps) {
+  const [selected, setSelected] = useState<string[]>(formData.cuisine || [])
   const [selectedVariants, setSelectedVariants] = useState<string[]>(formData.cuisineVariants || [])
 
-  const handleCuisineChange = (value: string) => {
-    updateFormData("cuisine", value)
-    setSelectedVariants([])
-    updateFormData("cuisineVariants", [])
+  const handleToggle = (value: string) => {
+    const newSelected = selected.includes(value)
+      ? selected.filter(item => item !== value)
+      : [...selected, value]
+
+    // Filter out variants that belong to cuisines that are no longer selected
+    const newVariants = selectedVariants.filter(variant => {
+      const parentCuisine = cuisineTypes.find(c =>
+        c.variants.includes(variant) && newSelected.includes(c.id)
+      )
+      return !!parentCuisine
+    })
+
+    setSelected(newSelected)
+    setSelectedVariants(newVariants)
+    updateFormData("cuisine", newSelected)
+    updateFormData("cuisineVariants", newVariants)
   }
 
   const handleVariantChange = (variant: string) => {
@@ -62,51 +75,52 @@ export function Cuisine({ formData, updateFormData }: CuisineProps) {
     updateFormData("cuisineVariants", newVariants)
   }
 
-  const selectedCuisine = cuisineTypes.find(c => c.id === formData.cuisine)
+  // Get all variants for the selected cuisines
+  const availableVariants = cuisineTypes
+    .filter(c => selected.includes(c.id))
+    .flatMap(c => c.variants)
 
   return (
     <div className="space-y-8">
       <p className="text-lg text-center text-muted-foreground">
-        Select your preferred cuisine style
+        Select your preferred cuisine styles
       </p>
 
-      <RadioGroup
-        value={formData.cuisine}
-        onValueChange={handleCuisineChange}
-        className="grid grid-cols-1 md:grid-cols-2 gap-4"
-      >
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {cuisineTypes.map((cuisine) => (
-          <Label
+          <Card
             key={cuisine.id}
-            className="cursor-pointer"
-            htmlFor={cuisine.id}
+            className={`relative overflow-hidden transition-all ${selected.includes(cuisine.id) ? "ring-2 ring-primary" : ""}`}
           >
-            <Card className={`relative overflow-hidden transition-all ${formData.cuisine === cuisine.id ? "ring-2 ring-primary" : ""
-              }`}>
-              <Image width={400} height={250}
-                src={cuisine.image}
-                alt={cuisine.title}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value={cuisine.id} id={cuisine.id} />
-                  <span className="font-semibold">{cuisine.title}</span>
-                </div>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {cuisine.description}
-                </p>
+            <Image width={400} height={250}
+              src={cuisine.image}
+              alt={cuisine.title}
+              className="w-full h-48 object-cover"
+            />
+            <div className="p-4">
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id={cuisine.id}
+                  checked={selected.includes(cuisine.id)}
+                  onCheckedChange={() => handleToggle(cuisine.id)}
+                />
+                <Label htmlFor={cuisine.id} className="font-semibold">
+                  {cuisine.title}
+                </Label>
               </div>
-            </Card>
-          </Label>
+              <p className="mt-2 text-sm text-muted-foreground">
+                {cuisine.description}
+              </p>
+            </div>
+          </Card>
         ))}
-      </RadioGroup>
+      </div>
 
-      {selectedCuisine && (
+      {availableVariants.length > 0 && (
         <div className="mt-8">
           <h3 className="text-lg font-semibold mb-4">Select Specific Varieties</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {selectedCuisine.variants.map((variant) => (
+            {availableVariants.map((variant) => (
               <div key={variant} className="flex items-center space-x-2">
                 <Checkbox
                   id={variant}
