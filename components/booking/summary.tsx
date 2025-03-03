@@ -27,7 +27,6 @@ export function Summary({ formData, onEdit }: SummaryProps) {
   const router = useRouter()
   const { toast } = useToast()
   const [isConsultLoading, setIsConsultLoading] = useState(false)
-  const [isBookLoading, setIsBookLoading] = useState(false)
 
   const calculateTotal = () => {
     let total = 0
@@ -127,7 +126,7 @@ export function Summary({ formData, onEdit }: SummaryProps) {
         description: "Our team will contact you soon to confirm the details",
       })
 
-      router.push("/dashboard/bookings")
+      router.push("/schedule")
     } catch (error) {
       console.error("Error scheduling consultation:", error)
       toast({
@@ -137,57 +136,6 @@ export function Summary({ formData, onEdit }: SummaryProps) {
       })
     } finally {
       setIsConsultLoading(false)
-    }
-  }
-
-  const handleProceedToBook = async () => {
-    if (!session?.user) {
-      toast({
-        title: "Authentication required",
-        description: "Please sign in to complete your booking",
-        variant: "destructive",
-      })
-      router.push("/sign-in?callbackUrl=/book")
-      return
-    }
-
-    try {
-      setIsBookLoading(true)
-
-      const bookingData = {
-        formData: JSON.stringify(formData),
-        totalAmount: calculateTotal().replace(/[^0-9.]/g, ""),
-        userId: session.user.id,
-        status: "confirmed"
-      }
-
-      const response = await fetch("/api/bookings", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(bookingData),
-      })
-
-      if (!response.ok) {
-        throw new Error("Failed to complete booking")
-      }
-
-      toast({
-        title: "Booking Confirmed",
-        description: "Your wedding booking has been confirmed!",
-      })
-
-      router.push("/dashboard/bookings")
-    } catch (error) {
-      console.error("Error completing booking:", error)
-      toast({
-        title: "Something went wrong",
-        description: "Please try again later or contact support",
-        variant: "destructive",
-      })
-    } finally {
-      setIsBookLoading(false)
     }
   }
 
@@ -359,17 +307,6 @@ export function Summary({ formData, onEdit }: SummaryProps) {
             </CardContent>
             <CardFooter className="flex flex-col gap-4">
               <Button
-                className="w-full"
-                onClick={handleProceedToBook}
-                disabled={isBookLoading}
-              >
-                {isBookLoading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Processing
-                  </>
-                ) : "Proceed to Book"}
-              </Button>
-              <Button
                 variant="outline"
                 className="w-full"
                 onClick={handleScheduleConsultation}
@@ -377,9 +314,9 @@ export function Summary({ formData, onEdit }: SummaryProps) {
               >
                 {isConsultLoading ? (
                   <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Scheduling
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Loading...
                   </>
-                ) : "Schedule Consultation"}
+                ) : "Schedule Meeting"}
               </Button>
             </CardFooter>
           </Card>

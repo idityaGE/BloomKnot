@@ -13,7 +13,7 @@ export default function MyApp() {
   }, [])
   return (
     <div className="min-h-full pt-32 sm:pt-48 lg:pt-64">
-      <Cal 
+      <Cal
         namespace="30min"
         calLink="aditya-maurya-b8zlbv/30min"
         style={{ width: "100%", height: "100%", overflow: "hidden" }}
