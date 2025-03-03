@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <div className="relative min-h-screen">
       {/* Video Background */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* <div className="absolute inset-0 overflow-hidden">
         <Image
           src="/hero-bg.png"
           layout="fill"
@@ -18,7 +18,7 @@ export function Hero() {
         >
         </Image>
         <div className="absolute inset-0 bg-black/30" />
-      </div>
+      </div> */}
 
       {/* Content */}
       <div className="relative pt-32 sm:pt-48 lg:pt-64">
@@ -28,7 +28,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-4xl font-bold tracking-tight text-white sm:text-6xl"
+              className="text-4xl font-bold tracking-tight sm:text-6xl"
             >
               Your Dream Wedding,
               <br />
@@ -38,7 +38,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="mt-6 text-lg leading-8 text-gray-300"
+              className="mt-6 text-lg leading-8"
             >
               Let us create the perfect celebration of your love story.
               From intimate gatherings to grand celebrations, we make your dream wedding a reality.
