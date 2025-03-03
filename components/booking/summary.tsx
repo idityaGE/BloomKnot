@@ -250,9 +250,8 @@ export function Summary({ formData, onEdit }: SummaryProps) {
               </p>
             </CardContent>
             <CardFooter className="flex flex-col gap-4">
-              <Button className="w-full">Proceed to Book</Button>
-              <Button variant="outline" className="w-full">
-                Schedule Consultation
+              <Button className="w-full">
+                Schedule Meeting
               </Button>
             </CardFooter>
           </Card>

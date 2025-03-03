@@ -35,7 +35,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text, className }) => {
       ref={textRef}
       className={cn(
         `animated-text  text-[15vw] text-center tracking-[-0.06em] w-full font-bold left-0 -bottom-4 absolute leading-[80%]
-                 [--gradient-text-center:#3a7eee] [--gradient-text-edge:#f3f4f6]
+                 [--gradient-text-center:#F9FBE7] [--gradient-text-edge:#FEA1A1]
                  dark:[--gradient-text-center:rgb(226,226,226)] dark:[--gradient-text-edge:rgba(0,9,12,0.1)]`,
         className
       )}

@@ -60,7 +60,7 @@ const PreLoader = () => {
           {bars.map((_, index) => (
             <motion.div
               key={index}
-              className="bar w-[10vw] bg-black h-[105vh]"
+              className="bar w-[10vw] bg-secondary h-[105vh]"
               variants={{
                 initial: {
                   y: '0%',
