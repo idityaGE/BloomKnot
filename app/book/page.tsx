@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Navigation } from "@/components/navigation"
 import { WeddingType } from "@/components/booking/wedding-type"
 import { Location } from "@/components/booking/location"
 import { Venue } from "@/components/booking/venue"
@@ -74,7 +73,6 @@ export default function BookingPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navigation />
       <main className="container mx-auto px-4 pt-32 pb-24">
         <div className="max-w-4xl mx-auto">
           <div className="mb-16">

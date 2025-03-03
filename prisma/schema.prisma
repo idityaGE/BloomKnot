@@ -21,6 +21,7 @@ model User {
   banExpires    DateTime?
   sessions      Session[]
   accounts      Account[]
+  bookings      Booking?
 
   @@unique([email])
   @@map("user")
@@ -70,4 +71,17 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+
+model Booking {
+  id           String   @id @default(uuid())
+  userId       String   @unique
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  formData     Json
+  status       String   @default("pending") // pending, confirmed, completed, cancelled
+  consultDate  DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("booking")
 }

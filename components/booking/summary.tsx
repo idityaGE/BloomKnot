@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -10,7 +11,10 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-import { Check, Edit2 } from "lucide-react"
+import { Check, Edit2, Loader2 } from "lucide-react"
+import { useToast } from "@/hooks/use-toast"
+import { authClient } from "@/auth-client";
+import { useRouter } from "next/navigation"
 
 interface SummaryProps {
   formData: any
@@ -19,9 +23,11 @@ interface SummaryProps {
 }
 
 export function Summary({ formData, onEdit }: SummaryProps) {
-  // const formatPrice = (price: string) => {
-  //   return price.replace("From ", "")
-  // }
+  const { data: session } = authClient.useSession()
+  const router = useRouter()
+  const { toast } = useToast()
+  const [isConsultLoading, setIsConsultLoading] = useState(false)
+  const [isBookLoading, setIsBookLoading] = useState(false)
 
   const calculateTotal = () => {
     let total = 0
@@ -81,6 +87,108 @@ export function Summary({ formData, onEdit }: SummaryProps) {
       style: "currency",
       currency: "USD"
     })
+  }
+
+  const handleScheduleConsultation = async () => {
+    if (!session?.user) {
+      toast({
+        title: "Authentication required",
+        description: "Please sign in to schedule a consultation",
+        variant: "destructive",
+      })
+      router.push("/sign-in?callbackUrl=/book")
+      return
+    }
+
+    try {
+      setIsConsultLoading(true)
+
+      const bookingData = {
+        formData: JSON.stringify(formData),
+        totalAmount: calculateTotal().replace(/[^0-9.]/g, ""),
+        userId: session.user.id,
+        status: "pending"
+      }
+
+      const response = await fetch("/api/bookings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookingData),
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to schedule consultation")
+      }
+
+      toast({
+        title: "Consultation Scheduled",
+        description: "Our team will contact you soon to confirm the details",
+      })
+
+      router.push("/dashboard/bookings")
+    } catch (error) {
+      console.error("Error scheduling consultation:", error)
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later or contact support",
+        variant: "destructive",
+      })
+    } finally {
+      setIsConsultLoading(false)
+    }
+  }
+
+  const handleProceedToBook = async () => {
+    if (!session?.user) {
+      toast({
+        title: "Authentication required",
+        description: "Please sign in to complete your booking",
+        variant: "destructive",
+      })
+      router.push("/sign-in?callbackUrl=/book")
+      return
+    }
+
+    try {
+      setIsBookLoading(true)
+
+      const bookingData = {
+        formData: JSON.stringify(formData),
+        totalAmount: calculateTotal().replace(/[^0-9.]/g, ""),
+        userId: session.user.id,
+        status: "confirmed"
+      }
+
+      const response = await fetch("/api/bookings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookingData),
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to complete booking")
+      }
+
+      toast({
+        title: "Booking Confirmed",
+        description: "Your wedding booking has been confirmed!",
+      })
+
+      router.push("/dashboard/bookings")
+    } catch (error) {
+      console.error("Error completing booking:", error)
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later or contact support",
+        variant: "destructive",
+      })
+    } finally {
+      setIsBookLoading(false)
+    }
   }
 
   return (
@@ -250,8 +358,28 @@ export function Summary({ formData, onEdit }: SummaryProps) {
               </p>
             </CardContent>
             <CardFooter className="flex flex-col gap-4">
-              <Button className="w-full">
-                Schedule Meeting
+              <Button
+                className="w-full"
+                onClick={handleProceedToBook}
+                disabled={isBookLoading}
+              >
+                {isBookLoading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Processing
+                  </>
+                ) : "Proceed to Book"}
+              </Button>
+              <Button
+                variant="outline"
+                className="w-full"
+                onClick={handleScheduleConsultation}
+                disabled={isConsultLoading}
+              >
+                {isConsultLoading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Scheduling
+                  </>
+                ) : "Schedule Consultation"}
               </Button>
             </CardFooter>
           </Card>
