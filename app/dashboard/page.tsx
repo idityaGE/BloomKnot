@@ -40,7 +40,7 @@ export default function BookingDashboard() {
   const fetchBookingData = async () => {
     try {
       setIsLoading(true)
-      const response = await fetch("/api/bookings/user")
+      const response = await fetch("/api/bookings")
 
       if (!response.ok) {
         if (response.status === 404) {

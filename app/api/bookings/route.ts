@@ -35,18 +35,42 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Create the booking
-    const booking = await prisma.booking.create({
-      data: {
-        userId: body.userId,
-        formData: body.formData, // This will be stored as a JSON field
-        status: body.status || "pending",
-      },
-    })
+    // Check if booking already exists for this user
+    const existingBooking = await prisma.booking.findUnique({
+      where: {
+        userId: body.userId
+      }
+    });
+
+    let booking;
+
+    if (existingBooking) {
+      // Update existing booking
+      booking = await prisma.booking.update({
+        where: {
+          userId: body.userId
+        },
+        data: {
+          formData: body.formData, // This will be stored as a JSON field
+          status: body.status || "pending",
+        },
+      });
+      console.log("Updated existing booking:", booking.id);
+    } else {
+      // Create new booking
+      booking = await prisma.booking.create({
+        data: {
+          userId: body.userId,
+          formData: body.formData, // This will be stored as a JSON field
+          status: body.status || "pending",
+        },
+      });
+      console.log("Created new booking:", booking.id);
+    }
 
     return NextResponse.json({ booking }, { status: 201 })
   } catch (error) {
-    console.error("Error creating booking:", error)
+    console.error("Error creating/updating booking:", error)
     return NextResponse.json(
       { error: "An error occurred while processing your request" },
       { status: 500 }

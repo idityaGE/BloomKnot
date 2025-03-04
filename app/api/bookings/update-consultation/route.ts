@@ -29,14 +29,27 @@ export async function POST(request: Request) {
       )
     }
 
+    // Check if booking exists for this user
     const booking = await prisma.booking.findUnique({
       where: { userId: user.id },
     })
 
     if (!booking) {
+      console.error("No booking found for user:", user.id);
       return NextResponse.json(
         { error: "No booking found" },
         { status: 404 }
+      )
+    }
+
+    // Format the date properly to ensure it's valid
+    const formattedDate = new Date(consultDate);
+
+    if (isNaN(formattedDate.getTime())) {
+      console.error("Invalid date format:", consultDate);
+      return NextResponse.json(
+        { error: "Invalid date format" },
+        { status: 400 }
       )
     }
 
@@ -44,16 +57,17 @@ export async function POST(request: Request) {
     const updatedBooking = await prisma.booking.update({
       where: { id: booking.id },
       data: {
-        consultDate: new Date(consultDate),
-        status: booking.status === 'pending' ? 'pending' : booking.status
+        consultDate: formattedDate,
+        // Only change status if it's pending
+        status: booking.status === 'pending' ? 'confirmed' : booking.status
       },
-    })
+    });
 
     return NextResponse.json(updatedBooking)
   } catch (error) {
     console.error("Error updating consultation date:", error)
     return NextResponse.json(
-      { error: "Failed to update consultation date" },
+      { error: "Failed to update consultation date", details: error instanceof Error ? error.message : String(error) },
       { status: 500 }
     )
   }

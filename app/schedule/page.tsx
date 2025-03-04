@@ -37,19 +37,23 @@ export default function SchedulePage() {
         layout: "month_view"
       });
 
+      // Inside useEffect for Cal.com integration
       // Handle booking successful event
       cal("on", {
         action: "bookingSuccessful",
         callback: (e: any) => {
-          // Get the booking details from the event
-          const startTime = e?.detail?.data?.startTime;
+          const { data } = e.detail
+          //  date:"2025-03-05T06:30:00.000Z"
+          const startTime = data.date
           if (startTime) {
             handleConsultationScheduled(startTime);
           } else {
+            console.error("No startTime received from Cal.com. Full data:", JSON.stringify(e?.detail?.data?.date));
             // Redirect even if we don't have the date
             toast({
               title: "Consultation Scheduled",
-              description: "Your consultation has been scheduled successfully",
+              description: "Your consultation has been scheduled successfully, but we couldn't process some details. Our team will contact you.",
+              variant: "destructive",
             });
             router.push("/dashboard");
           }
@@ -58,10 +62,19 @@ export default function SchedulePage() {
     })();
   }, [session, isPending, router]);
 
+  // Updated handleConsultationScheduled function
   const handleConsultationScheduled = async (consultDate: string) => {
     try {
       setIsUpdating(true);
-      
+
+      // Log the consultDate to ensure we're getting valid data
+      console.log("Scheduling consultation for:", consultDate);
+
+      // Check if consultDate is a valid date
+      if (!consultDate || isNaN(new Date(consultDate).getTime())) {
+        console.error("Invalid consultation date:", consultDate);
+        throw new Error("Invalid consultation date received from calendar");
+      }
 
       const response = await fetch("/api/bookings/update-consultation", {
         method: "POST",
@@ -71,9 +84,14 @@ export default function SchedulePage() {
         body: JSON.stringify({ consultDate }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error("Failed to update booking with consultation date");
+        console.error("Error response:", data);
+        throw new Error(data.error || "Failed to update booking with consultation date");
       }
+
+      console.log("Successfully updated booking with consultation date:", data);
 
       toast({
         title: "Consultation Scheduled",
