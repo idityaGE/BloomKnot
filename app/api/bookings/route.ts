@@ -68,7 +68,7 @@ export async function POST(req: NextRequest) {
       console.log("Created new booking:", booking.id);
     }
 
-    return NextResponse.json({ booking }, { status: 201 })
+    return NextResponse.json(booking, { status: 201 })
   } catch (error) {
     console.error("Error creating/updating booking:", error)
     return NextResponse.json(
@@ -104,14 +104,22 @@ export async function GET(req: NextRequest) {
 
     const whereClause = userId ? { userId } : session.user.role === "admin" ? {} : { userId: session.user.id }
 
-    const bookings = await prisma.booking.findMany({
+    const booking = await prisma.booking.findFirst({
       where: whereClause,
       orderBy: {
         createdAt: "desc",
       },
     })
 
-    return NextResponse.json({ bookings })
+    if (!booking) {
+      return NextResponse.json(
+        { error: "No booking found" },
+        { status: 404 }
+      )
+    }
+
+    // Return the booking directly, not wrapped in a bookings object
+    return NextResponse.json(booking)
   } catch (error) {
     console.error("Error fetching bookings:", error)
     return NextResponse.json(

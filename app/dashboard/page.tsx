@@ -52,6 +52,7 @@ export default function BookingDashboard() {
       }
 
       const data = await response.json()
+      // Fix: Access the bookings property from the response
       setBooking(data)
     } catch (error) {
       console.error("Error fetching booking:", error)
@@ -90,7 +91,7 @@ export default function BookingDashboard() {
 
   if (!booking) {
     return (
-      <div className="container max-w-6xl mx-auto py-10 px-4">
+      <div className="container min-h-screen max-w-6xl mx-auto py-10 px-4 pt-32">
         <Card className="w-full">
           <CardHeader>
             <CardTitle>No Booking Found</CardTitle>
@@ -115,7 +116,7 @@ export default function BookingDashboard() {
     : booking.formData
 
   return (
-    <div className="container max-w-6xl mx-auto py-10 px-4">
+    <div className="container max-w-6xl mx-auto py-10 px- pt-32">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Your Wedding Booking</h1>
@@ -164,7 +165,7 @@ export default function BookingDashboard() {
               <div>
                 <h3 className="font-medium mb-2">Cuisine</h3>
                 <p className="capitalize">{formData.cuisine}</p>
-                {formData.cuisineVariants && (
+                {formData.cuisineVariants && formData.cuisineVariants.length > 0 && (
                   <div className="flex flex-wrap gap-2 mt-2">
                     {formData.cuisineVariants.map((variant: string) => (
                       <span
@@ -328,7 +329,7 @@ export default function BookingDashboard() {
                   {new Intl.NumberFormat('en-US', {
                     style: 'currency',
                     currency: 'USD'
-                  }).format(parseFloat(booking.formData.totalAmount || "0"))}
+                  }).format(parseFloat(formData.totalAmount || "0"))}
                 </p>
               </div>
             </CardContent>
