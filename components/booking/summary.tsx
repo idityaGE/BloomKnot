@@ -307,7 +307,6 @@ export function Summary({ formData, onEdit }: SummaryProps) {
             </CardContent>
             <CardFooter className="flex flex-col gap-4">
               <Button
-                variant="outline"
                 className="w-full"
                 onClick={handleScheduleConsultation}
                 disabled={isConsultLoading}

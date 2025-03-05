@@ -21,8 +21,10 @@ import { z } from "zod";
 import { authClient } from "@/auth-client";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 export default function SignUp() {
+  const router = useRouter();
   const [pending, setPending] = useState(false);
   const { toast } = useToast();
 
@@ -53,6 +55,7 @@ export default function SignUp() {
             description:
               "Your account has been created. Check your email for a verification link.",
           });
+          router.push("/mail-verification?email=" + values.email);
         },
         onError: (ctx) => {
           console.log("error", ctx);
