@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { Calendar, Check, Clock, Edit2, Loader2, RefreshCw, X } from "lucide-react"
+import { Calendar, Check, Clock, Edit2, Loader2, RefreshCw } from "lucide-react"
 import { authClient } from "@/auth-client"
 import { useToast } from "@/hooks/use-toast"
 import { Badge } from "@/components/ui/badge"
@@ -95,7 +95,7 @@ export default function BookingDashboard() {
         <Card className="w-full">
           <CardHeader>
             <CardTitle>No Booking Found</CardTitle>
-            <CardDescription>You haven't made a wedding booking yet</CardDescription>
+            <CardDescription>You haven&apos;t made a wedding booking yet</CardDescription>
           </CardHeader>
           <CardContent className="text-center py-10">
             <p className="text-muted-foreground mb-6">

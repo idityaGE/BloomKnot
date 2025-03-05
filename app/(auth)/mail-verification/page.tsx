@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Loader2, Mail, MailCheck, RefreshCcw } from "lucide-react"
@@ -93,7 +92,7 @@ export default function MailVerificationPage() {
           <div>
             <CardTitle className="text-2xl">Check your email</CardTitle>
             <CardDescription className="mt-2">
-              We've sent a verification link to
+              We&apos;ve sent a verification link to
               {email && (
                 <span className="font-medium text-foreground"> {email}</span>
               )}
@@ -109,7 +108,7 @@ export default function MailVerificationPage() {
 
           <div className="border border-dashed rounded-lg p-4 bg-muted/50">
             <p className="text-sm text-muted-foreground mb-1">
-              Can't find the email?
+              Can&apos;t find the email?
             </p>
             <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1">
               <li>Check your spam or junk folder</li>
