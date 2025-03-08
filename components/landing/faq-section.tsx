@@ -131,7 +131,7 @@ export function FAQSection() {
           </div>
           <div>
             <h3 className="font-medium text-lg">Still have questions?</h3>
-            <p className="text-gray-600 text-sm mt-1">We're here to help you plan your perfect day.</p>
+            <p className="text-gray-600 text-sm mt-1">We&apos;re here to help you plan your perfect day.</p>
           </div>
           <a
             href="/contact"
