@@ -12,39 +12,47 @@ body {
     --background: 30 33% 97%;
     /* Equivalent to #faf7f4 */
 
-    /* Apply rgb(254, 161, 161) to primary */
-    --primary: 0 94% 81%;
-    /* Equivalent to rgb(254, 161, 161) */
+    /* Change primary to gold color */
+    --primary: 46 69% 52%;
+    /* Equivalent to #d4af37 */
 
     /* Adjust the foreground (text) color to create good contrast */
     --foreground: 240 10% 3.9%;
     /* Keep dark text for good readability */
 
-    /* Update secondary to be a shade of your light coral */
-    --secondary: 0 70% 70%;
-    --secondary-foreground: 0 0% 98%;
-    /* Light text on secondary */
+    /* Update secondary to be a complementary shade to gold */
+    --secondary: 46 40% 90%;
+    --secondary-foreground: 46 70% 20%;
+    /* Darker text on secondary */
 
-    /* Keep other variables as they were, but update background-related ones */
+    /* Keep other variables as they were, but update related ones */
     --card: 30 33% 97%;
     /* Match background */
     --card-foreground: 240 10% 3.9%;
     --popover: 30 33% 97%;
     /* Match background */
     --popover-foreground: 240 10% 3.9%;
-    --primary-foreground: 0 0% 98%;
-    --muted: 0 20% 96%;
+    --primary-foreground: 0 0% 100%;
+    /* White text on gold buttons for better contrast */
+    --muted: 46 20% 96%;
     --muted-foreground: 240 3.8% 46.1%;
-    --accent: 0 94% 91%;
-    /* Lighter version of light coral */
-    --accent-foreground: 240 5.9% 10%;
+    --accent: 46 65% 90%;
+    /* Lighter version of gold */
+    --accent-foreground: 46 75% 20%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 84% 90%;
-    --input: 0 94% 95%;
-    --ring: 0 94% 81%;
-    /* Match primary (light coral) */
+    --border: 46 30% 85%;
+    --input: 30 20% 96%;
+    --ring: 46 69% 52%;
+    /* Match primary (gold) */
     --radius: 0.5rem;
+
+    /* Chart colors - updated to gold palette */
+    --chart-1: 46 69% 52%;
+    --chart-2: 46 60% 60%;
+    --chart-3: 46 50% 70%;
+    --chart-4: 46 40% 80%;
+    --chart-5: 46 30% 90%;
   }
 }
 
@@ -52,13 +60,23 @@ body {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
 
+/* Button component styling override */
+@layer components {
+  .btn-gold {
+    @apply bg-gold text-white hover:bg-gold/90 transition-colors;
+  }
+}
+
 @layer utilities {
   .animated-text {
+    --gradient-text-center: #d4af37;
+    --gradient-text-edge: #bb9b32;
     background: radial-gradient(circle at var(--text-mouse-x) var(--text-mouse-y),
         var(--gradient-text-center) 0%,
         var(--gradient-text-edge) 40%);

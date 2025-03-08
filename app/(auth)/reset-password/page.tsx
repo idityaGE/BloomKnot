@@ -60,7 +60,7 @@ function ResetPasswordContent() {
   if (error === "invalid_token") {
     return (
       <div className="grow flex items-center justify-center p-4">
-        <Card className="w-full max-w-md">
+        <Card className="w-full max-w-md border-none md:border bg-white/80 backdrop-blur-sm shadow-lg rounded-xl overflow-hidden">
           <CardHeader>
             <CardTitle className="text-3xl font-bold text-center text-gray-800">
               Invalid Reset Link
@@ -80,7 +80,7 @@ function ResetPasswordContent() {
 
   return (
     <div className="grow flex items-center justify-center p-4">
-      <Card className="w-full max-w-md">
+      <Card className="w-full max-w-md border-none md:border bg-white/80 backdrop-blur-sm shadow-lg rounded-xl overflow-hidden">
         <CardHeader>
           <CardTitle className="text-3xl font-bold text-center text-gray-800">
             Reset Password

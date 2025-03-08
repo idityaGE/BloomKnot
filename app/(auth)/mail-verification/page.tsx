@@ -83,7 +83,7 @@ export default function MailVerificationPage() {
 
   return (
     <div className="container flex h-screen items-center justify-center">
-      <Card className="w-full max-w-md">
+      <Card className="w-full max-w-md border-none md:border bg-white/80 backdrop-blur-sm shadow-lg rounded-xl overflow-hidden">
         <CardHeader className="text-center space-y-6">
           <div className="mx-auto rounded-full bg-primary/10 p-3 w-16 h-16 flex items-center justify-center">
             <MailCheck className="h-8 w-8 text-primary" />

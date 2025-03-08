@@ -9,34 +9,6 @@ import { ArrowRight } from "lucide-react"
 export function Hero() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-cream to-white">
-      {/* Decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Floral corner element - top right */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 0.1, scale: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="absolute -top-20 -right-20 w-96 h-96"
-        >
-          <Image
-            src="https://plus.unsplash.com/premium_photo-1675719847698-6c8a924b2a7a?q=80&w=2869&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt=""
-            width={400}
-            height={400}
-            className="opacity-20"
-            priority
-          />
-        </motion.div>
-
-        {/* Abstract shape - bottom left */}
-        <motion.div
-          initial={{ opacity: 0, x: -100 }}
-          animate={{ opacity: 0.07, x: 0 }}
-          transition={{ duration: 1.2, delay: 0.3 }}
-          className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-gold blur-3xl"
-        />
-      </div>
-      
       {/* Content */}
       <div className="relative min-h-screen flex items-center py-24 md:py-10">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -110,7 +82,7 @@ export function Hero() {
             >
               <div className="relative h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] w-full">
                 <Image
-                  src="/images/hero-wedding.jpg"
+                  src="https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Elegant wedding ceremony setup"
                   fill
                   className="object-cover rounded-lg sm:rounded-xl shadow-xl"
