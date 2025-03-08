@@ -20,7 +20,8 @@ export default function MobileMenuPortal({ children, isOpen }: MobileMenuPortalP
   if (!mounted || !isOpen) return null
 
   return createPortal(
-    <div className="fixed inset-0 z-[9999] overflow-hidden">{children}</div>,
+    // Lower z-index to be below preloader (9000) but above regular content
+    <div className="fixed inset-0 z-[8000] overflow-hidden">{children}</div>,
     document.body
   )
 }

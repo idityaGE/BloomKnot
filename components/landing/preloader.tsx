@@ -31,14 +31,15 @@ const PreLoader = () => {
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, [updateCounter]);
+  }, []); // Removed updateCounter dependency which could cause infinite loop
 
   const bars = Array.from({ length: 10 });
 
   return (
     <AnimatePresence>
       <motion.div
-        className={`fixed w-full h-full z-[9000] flex items-center justify-center ${isCounterCompleted ? 'pointer-events-none' : ''}`}
+        // Increased z-index to ensure preloader is above everything else
+        className={`fixed w-full h-full z-[9999] flex items-center justify-center ${isCounterCompleted ? 'pointer-events-none' : ''}`}
         initial={{ opacity: 1, overflow: 'hidden' }}
         exit={{ opacity: 0, overflow: 'auto' }}
         transition={{ duration: 0.5 }}

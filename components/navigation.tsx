@@ -77,7 +77,7 @@ export function Navigation() {
 
       {/* Mobile menu - rendered through portal */}
       <MobileMenuPortal isOpen={mobileMenuOpen}>
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {mobileMenuOpen && (
             <>
               {/* Background overlay */}
@@ -85,7 +85,7 @@ export function Navigation() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.3 }}
                 className="fixed inset-0 bg-gray-900/70 backdrop-blur-sm"
                 aria-hidden="true"
                 onClick={() => setMobileMenuOpen(false)}
@@ -96,38 +96,60 @@ export function Navigation() {
                 initial={{ x: '100%' }}
                 animate={{ x: 0 }}
                 exit={{ x: '100%' }}
-                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                transition={{
+                  type: "spring",
+                  damping: 30,
+                  stiffness: 300,
+                  mass: 0.8
+                }}
                 className="fixed inset-y-0 right-0 w-full max-w-sm bg-background overflow-y-auto px-6 py-6 shadow-xl"
               >
                 <div className="flex items-center justify-between mb-8">
-                  <Link
-                    href="/"
-                    className="-m-1.5 p-1.5 flex items-center gap-2"
-                    onClick={() => setMobileMenuOpen(false)}
+                  <motion.div
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2, duration: 0.4 }}
                   >
-                    <div className="bg-gold/10 rounded-full p-1.5">
-                      <HeartHandshake className="h-6 w-6 text-gold" />
-                    </div>
-                    <span className="font-semibold text-xl">BloomKnot</span>
-                  </Link>
-                  <button
+                    <Link
+                      href="/"
+                      className="-m-1.5 p-1.5 flex items-center gap-2"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <div className="bg-gold/10 rounded-full p-1.5">
+                        <HeartHandshake className="h-6 w-6 text-gold" />
+                      </div>
+                      <span className="font-semibold text-xl">BloomKnot</span>
+                    </Link>
+                  </motion.div>
+                  <motion.button
+                    initial={{ opacity: 0, rotate: -90 }}
+                    animate={{ opacity: 1, rotate: 0 }}
+                    exit={{ opacity: 0, rotate: 90 }}
+                    transition={{ duration: 0.3 }}
                     type="button"
                     className="-m-2.5 rounded-md p-2.5 text-gray-700 hover:bg-gray-100 transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <span className="sr-only">Close menu</span>
                     <X className="h-6 w-6" aria-hidden="true" />
-                  </button>
+                  </motion.button>
                 </div>
 
                 <div className="mt-6 flow-root">
                   <div className="-my-6 divide-y divide-gray-200">
                     <div className="space-y-2 py-6">
-                      {navigation.map((item) => (
+                      {navigation.map((item, i) => (
                         <motion.div
                           key={item.name}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{
+                            delay: 0.1 + i * 0.1,
+                            duration: 0.4,
+                            exit: { duration: 0.2 }
+                          }}
                           whileHover={{ x: 5 }}
-                          transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                         >
                           <Link
                             href={item.href}
@@ -135,16 +157,25 @@ export function Navigation() {
                             onClick={() => setMobileMenuOpen(false)}
                           >
                             <span>{item.name}</span>
-                            <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-gold" />
+                            <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-gold transition-colors" />
                           </Link>
                         </motion.div>
                       ))}
                     </div>
-                    <div className="py-6">
+                    <motion.div
+                      className="py-6"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{
+                        delay: 0.3 + navigation.length * 0.1,
+                        duration: 0.4
+                      }}
+                    >
                       <div className="flex flex-col gap-3">
                         <AuthButtons isMobile />
                       </div>
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
               </motion.div>

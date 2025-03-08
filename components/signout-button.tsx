@@ -35,7 +35,7 @@ export default function SignoutButton({ isMobile = false }: SignoutButtonProps) 
 
   return (
     <Button
-      variant="ghost"
+      variant="outline"
       size={isMobile ? "lg" : "sm"}
       className={cn(
         "text-gray-500 hover:text-red-600 hover:bg-red-50",
@@ -46,7 +46,7 @@ export default function SignoutButton({ isMobile = false }: SignoutButtonProps) 
     >
       {pending ? "Signing Out..." : (
         <>
-          <LogOut className="w-4 h-4 mr-2" />
+          <LogOut className="w-4 h-4 mr-1" />
           Sign Out
         </>
       )}
