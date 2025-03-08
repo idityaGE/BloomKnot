@@ -8,9 +8,9 @@ body {
 
 @layer base {
   :root {
-    /* Apply rgb(249, 251, 231) to background */
-    --background: 65 77% 95%;
-    /* Equivalent to rgb(249, 251, 231) */
+    /* Use #faf7f4 as background (cream color) */
+    --background: 30 33% 97%;
+    /* Equivalent to #faf7f4 */
 
     /* Apply rgb(254, 161, 161) to primary */
     --primary: 0 94% 81%;
@@ -25,11 +25,11 @@ body {
     --secondary-foreground: 0 0% 98%;
     /* Light text on secondary */
 
-    /* Keep other variables as they were */
-    --card: 65 77% 95%;
+    /* Keep other variables as they were, but update background-related ones */
+    --card: 30 33% 97%;
     /* Match background */
     --card-foreground: 240 10% 3.9%;
-    --popover: 65 77% 95%;
+    --popover: 30 33% 97%;
     /* Match background */
     --popover-foreground: 240 10% 3.9%;
     --primary-foreground: 0 0% 98%;
