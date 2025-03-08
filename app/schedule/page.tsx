@@ -271,12 +271,12 @@ export default function SchedulePage() {
             </CardHeader>
 
             <CardContent className="p-0 mt-4">
-              <div className="bg-white rounded-lg h-[550px] md:h-[600px]">
+              <div className="bg-white rounded-lg h-[1350px] md:h-[550px]">
                 {calInitialized ? (
                   <Cal
                     namespace="30min"
                     calLink="idityage/30min"
-                    style={{ width: "100%", height: "100%", overflow: "hidden" }}
+                    style={{ width: "100%", height: "100%", overflow: "scroll" }}
                     config={{
                       layout: "month_view",
                       theme: "light",
