@@ -155,7 +155,7 @@ export default function BookingDashboard() {
                 <HeartHandshake className="h-16 w-16 text-gold/50 mx-auto mb-6" />
                 <h3 className="text-xl font-bold mb-3">No Wedding Booking Found</h3>
                 <p className="text-muted-foreground">
-                  Let's start planning your perfect day! Create a wedding booking to begin your journey with BloomKnot.
+                  Let&apos;s start planning your perfect day! Create a wedding booking to begin your journey with BloomKnot.
                 </p>
               </div>
               <Button
@@ -280,7 +280,7 @@ export default function BookingDashboard() {
                     <h3 className="font-medium text-gray-500 text-sm uppercase tracking-wider mb-2">Wedding Type</h3>
                     <p className="capitalize text-lg font-medium">{formData.weddingType}</p>
                     {formData.customDetails && (
-                      <p className="text-sm text-muted-foreground mt-1">"{formData.customDetails}"</p>
+                      <p className="text-sm text-muted-foreground mt-1">&quot;{formData.customDetails}&quot;</p>
                     )}
                   </div>
 
@@ -343,7 +343,7 @@ export default function BookingDashboard() {
                     {formData.dietaryRequirements && (
                       <div className="mt-3 bg-amber-50/50 border border-amber-100 rounded-lg p-3 text-sm">
                         <p className="font-medium text-amber-800">Special Requirements:</p>
-                        <p className="text-amber-700">"{formData.dietaryRequirements}"</p>
+                        <p className="text-amber-700">&quot;{formData.dietaryRequirements}&quot;</p>
                       </div>
                     )}
                   </div>
@@ -364,7 +364,7 @@ export default function BookingDashboard() {
                       <div className="mt-3 p-3 border border-gray-200 rounded-lg">
                         <p className="text-sm font-medium">{formData.customThemeName}</p>
                         {formData.customThemeDescription && (
-                          <p className="text-sm text-muted-foreground mt-1">"{formData.customThemeDescription}"</p>
+                          <p className="text-sm text-muted-foreground mt-1">&quot;{formData.customThemeDescription}&quot;</p>
                         )}
                         {formData.customThemeColors && (
                           <p className="text-sm mt-1">
@@ -400,7 +400,7 @@ export default function BookingDashboard() {
                           {formData.entertainmentRequests && (
                             <div className="mt-2 text-sm bg-blue-50 border border-blue-100 rounded-lg p-3">
                               <span className="font-medium text-blue-700">Special Request:</span>
-                              <p className="text-blue-600">"{formData.entertainmentRequests}"</p>
+                              <p className="text-blue-600">&quot;{formData.entertainmentRequests}&quot;</p>
                             </div>
                           )}
                         </div>

@@ -202,7 +202,7 @@ export default function SchedulePage() {
 
               <div className="text-center">
                 <p className="text-sm text-gray-600 mb-1">
-                  We've sent the details to your email
+                  We&apos;ve sent the details to your email
                 </p>
                 <p className="text-xs text-gray-500">
                   A wedding specialist will contact you at the scheduled time
@@ -304,7 +304,7 @@ export default function SchedulePage() {
               <div className="flex flex-col items-center gap-3 p-6 rounded-lg bg-white shadow-lg">
                 <Loader2 className="h-10 w-10 animate-spin text-gold" />
                 <p className="text-lg font-medium">Confirming your consultation...</p>
-                <p className="text-sm text-gray-500">Please don't close this page</p>
+                <p className="text-sm text-gray-500">Please don&apos;t close this page</p>
               </div>
             </div>
           )}

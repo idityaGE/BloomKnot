@@ -70,7 +70,7 @@ export default function ForgotPassword() {
           <div className="hidden md:block">
             <h2 className="text-2xl font-bold text-center">Reset your password</h2>
             <p className="text-center text-gray-500 text-sm mt-1">
-              Enter your email and we'll send you a reset link
+              Enter your email and we&apos;ll send you a reset link
             </p>
           </div>
         </CardHeader>
@@ -95,7 +95,7 @@ export default function ForgotPassword() {
                       </FormControl>
                       <FormMessage />
                       <FormDescription className="text-xs text-gray-500">
-                        We'll send a secure link to reset your password
+                        We&apos;ll send a secure link to reset your password
                       </FormDescription>
                     </FormItem>
                   )}
@@ -115,11 +115,11 @@ export default function ForgotPassword() {
               </div>
               <h3 className="text-lg font-medium mb-2">Check your inbox</h3>
               <p className="text-gray-600 text-sm mb-6">
-                We've sent a password reset link to <strong>{form.getValues().email}</strong>.
+                We&apos;ve sent a password reset link to <strong>{form.getValues().email}</strong>.
                 The link will expire in 24 hours.
               </p>
               <div className="bg-gray-50 rounded-lg p-4 text-sm text-left">
-                <p className="font-medium mb-2">Can't find the email?</p>
+                <p className="font-medium mb-2">Can&apos;t find the email?</p>
                 <ul className="list-disc pl-5 text-xs text-gray-600 space-y-1">
                   <li>Check your spam or junk folder</li>
                   <li>Allow a few minutes for delivery</li>

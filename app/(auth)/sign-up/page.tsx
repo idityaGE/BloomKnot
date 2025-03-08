@@ -127,7 +127,7 @@ export default function SignUp() {
                     </FormControl>
                     <FormMessage />
                     <FormDescription className="text-xs text-gray-500">
-                      We'll send a verification link to this email
+                      We&apos;ll send a verification link to this email
                     </FormDescription>
                   </FormItem>
                 )}

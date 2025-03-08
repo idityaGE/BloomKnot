@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -189,7 +189,7 @@ export default function SignIn() {
         </CardContent>
         <CardFooter className="flex flex-col items-center gap-3 text-center pt-6 pb-8 border-t border-gray-100 bg-gray-50/50">
           <p className="text-gray-700">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link href="/sign-up" className="font-medium text-gold hover:underline">
               Create account
             </Link>
