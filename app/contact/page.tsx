@@ -108,7 +108,7 @@ const ContactPage = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h1>
             <div className="w-24 h-1 bg-gold/70 mx-auto mb-6"></div>
             <p className="max-w-xl mx-auto text-gray-600 mb-8">
-              Have questions about our wedding planning services? We'd love to hear from you and help make your special day perfect.
+              Have questions about our wedding planning services? We&apos;d love to hear from you and help make your special day perfect.
             </p>
           </motion.div>
         </div>
@@ -134,7 +134,7 @@ const ContactPage = () => {
                       <Check className="h-8 w-8 text-green-600" />
                     </div>
                     <h3 className="text-xl font-medium text-green-800 mb-3">Message Sent Successfully!</h3>
-                    <p className="text-green-700 mb-6 max-w-md">Thank you for reaching out. We'll get back to you shortly.</p>
+                    <p className="text-green-700 mb-6 max-w-md">Thank you for reaching out. We&apos;ll get back to you shortly.</p>
                     <Button
                       onClick={() => setSubmitted(false)}
                       className="bg-white text-green-700 border border-green-200 hover:bg-green-50 px-6"
@@ -309,7 +309,7 @@ const ContactPage = () => {
                     <h3 className="text-lg font-semibold">Our Promise</h3>
                   </div>
                   <p className="text-gray-600">
-                    We'll respond to your inquiry within 24 hours. Your wedding journey matters to us, and we're committed to making every step of the planning process seamless and enjoyable.
+                    We&apos;ll respond to your inquiry within 24 hours. Your wedding journey matters to us, and we&apos;re committed to making every step of the planning process seamless and enjoyable.
                   </p>
                 </div>
               </div>
