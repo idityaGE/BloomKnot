@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -8,11 +8,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import LoadingButton from "@/components/loading-button";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 import { signUpSchema } from "@/lib/schema";
 import { useForm } from "react-hook-form";
@@ -51,17 +53,18 @@ export default function SignUp() {
         },
         onSuccess: () => {
           toast({
-            title: "Account created",
+            title: "Account created successfully",
             description:
-              "Your account has been created. Check your email for a verification link.",
+              "Please check your email for a verification link to complete the signup process.",
           });
           router.push("/mail-verification?email=" + values.email);
         },
         onError: (ctx) => {
           console.log("error", ctx);
           toast({
-            title: "Something went wrong",
-            description: ctx.error.message ?? "Something went wrong.",
+            title: "Registration failed",
+            description: ctx.error.message ?? "Please try again with different credentials.",
+            variant: "destructive",
           });
         },
       }
@@ -70,55 +73,125 @@ export default function SignUp() {
   };
 
   return (
-    <div className="grow flex items-center justify-center p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle className="text-3xl font-bold text-center">
-            Create Account
-          </CardTitle>
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <Card className="border-none md:border shadow-none md:shadow-md">
+        <CardHeader className="space-y-1 md:pt-6">
+          <div className="hidden md:block">
+            <h2 className="text-2xl font-bold text-center">Create an account</h2>
+            <p className="text-center text-gray-500 text-sm mt-1">
+              Start planning your perfect wedding day
+            </p>
+          </div>
         </CardHeader>
+
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              {["name", "email", "password", "confirmPassword"].map((field) => (
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Full Name</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Jane Doe"
+                        {...field}
+                        autoComplete="name"
+                        className="rounded-md"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder="name@example.com"
+                        {...field}
+                        autoComplete="email"
+                        className="rounded-md"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                    <FormDescription className="text-xs text-gray-500">
+                      We'll send a verification link to this email
+                    </FormDescription>
+                  </FormItem>
+                )}
+              />
+
+              <div className="space-y-4">
                 <FormField
                   control={form.control}
-                  key={field}
-                  name={field as keyof z.infer<typeof signUpSchema>}
-                  render={({ field: fieldProps }) => (
+                  name="password"
+                  render={({ field }) => (
                     <FormItem>
-                      <FormLabel>
-                        {field.charAt(0).toUpperCase() + field.slice(1)}
-                      </FormLabel>
+                      <FormLabel>Password</FormLabel>
                       <FormControl>
                         <Input
-                          type={
-                            field.includes("password")
-                              ? "password"
-                              : field === "email"
-                                ? "email"
-                                : "text"
-                          }
-                          placeholder={`Enter your ${field}`}
-                          {...fieldProps}
-                          autoComplete="off"
+                          type="password"
+                          placeholder="••••••••"
+                          {...field}
+                          className="rounded-md"
                         />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-              ))}
-              <LoadingButton pending={pending}>Sign up</LoadingButton>
+
+                <FormField
+                  control={form.control}
+                  name="confirmPassword"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Confirm Password</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="password"
+                          placeholder="••••••••"
+                          {...field}
+                          className="rounded-md"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              <LoadingButton
+                pending={pending}
+                className="w-full bg-gold hover:bg-gold/90 text-white mt-6"
+              >
+                Create account
+              </LoadingButton>
             </form>
           </Form>
-          <div className="mt-4 text-center text-sm">
-            <Link href="/sign-in" className="text-primary hover:underline">
-              Already have an account? Sign in
-            </Link>
-          </div>
         </CardContent>
+
+        <CardFooter className="flex justify-center border-t border-gray-100 pt-6">
+          <p className="text-sm text-gray-600">
+            Already have an account?{" "}
+            <Link href="/sign-in" className="font-medium text-gold hover:underline">
+              Sign in
+            </Link>
+          </p>
+        </CardFooter>
       </Card>
-    </div>
+    </motion.div>
   );
 }
