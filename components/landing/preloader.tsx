@@ -38,7 +38,7 @@ const PreLoader = () => {
   return (
     <AnimatePresence>
       <motion.div
-        className={`fixed w-full h-full z-20 flex items-center justify-center ${isCounterCompleted ? 'pointer-events-none' : ''}`}
+        className={`fixed w-full h-full z-[9000] flex items-center justify-center ${isCounterCompleted ? 'pointer-events-none' : ''}`}
         initial={{ opacity: 1, overflow: 'hidden' }}
         exit={{ opacity: 0, overflow: 'auto' }}
         transition={{ duration: 0.5 }}

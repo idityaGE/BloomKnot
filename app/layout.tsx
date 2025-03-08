@@ -19,13 +19,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      </head>
+      <body className={inter.className} style={{ isolation: 'isolate' }}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
         >
+          {/* Navigation */}
           <Navigation />
-          {children}
+
+          {/* Main content */}
+          <div className="relative z-0">
+            {children}
+          </div>
+
+          {/* Toaster for notifications */}
           <Toaster />
         </ThemeProvider>
       </body>
