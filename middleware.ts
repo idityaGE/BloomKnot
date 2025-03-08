@@ -1,26 +1,30 @@
+import { betterFetch } from "@better-fetch/fetch";
 import { NextResponse, type NextRequest } from "next/server";
-// import type { Session } from "@/auth";
-import { auth } from "@/auth";
-import { headers } from "next/headers";
+import type { Session } from "@/auth";
 
 const authRoutes = ["/sign-in", "/sign-up"];
 const passwordRoutes = ["/reset-password", "/forgot-password"];
 const adminRoutes = ["/admin"];
 const protectedRoutes = ["/book", "/schedule", "/dashboard", "/profile"];
 
-export async function middleware(request: NextRequest) {
+export default async function authMiddleware(request: NextRequest) {
   const pathName = request.nextUrl.pathname;
-
-  // Check if the current path matches any of our route groups
   const isAuthRoute = authRoutes.includes(pathName);
   const isPasswordRoute = passwordRoutes.includes(pathName);
-  const isAdminRoute = adminRoutes.some(route => pathName.startsWith(route));
+  const isAdminRoute = adminRoutes.includes(pathName);
   const isProtectedRoute = protectedRoutes.some(route => pathName.startsWith(route));
 
   try {
-    const session = await auth.api.getSession({
-      headers: await headers() // you need to pass the headers object.
-    })
+    // Get session using Better Auth's betterFetch
+    const { data: session } = await betterFetch<Session>(
+      "/api/auth/get-session",
+      {
+        baseURL: process.env.BETTER_AUTH_URL,
+        headers: {
+          cookie: request.headers.get("cookie") || "",
+        },
+      },
+    );
 
     // Handle protected routes
     if (isProtectedRoute && !session) {
