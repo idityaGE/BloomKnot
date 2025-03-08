@@ -5,8 +5,21 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import { authClient } from "@/auth-client"
+import { useRouter } from "next/navigation"
 
 export function Hero() {
+  const session = authClient.useSession()
+  const router = useRouter()
+
+  const handleClick = () => {
+    if (session.data?.user) {
+      router.push("/dashboard")
+    } else {
+      router.push("/auth/signin")
+    }
+  }
+
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-cream to-white">
       {/* Content */}
@@ -55,16 +68,15 @@ export function Hero() {
                 transition={{ duration: 0.8, delay: 0.6 }}
                 className="mt-6 sm:mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-x-6"
               >
-                <Link href="/book" className="group w-full sm:w-auto">
-                  <Button
-                    variant="default"
-                    size="lg"
-                    className="bg-gradient-to-r from-gold to-amber-500 text-white hover:shadow-lg transition-all duration-300 hover:translate-y-[-2px] w-full sm:w-auto"
-                  >
-                    <span className="mr-2">Book Your Consultation</span>
-                    <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </Link>
+                <Button
+                  variant="default"
+                  size="lg"
+                  className="bg-gradient-to-r from-gold to-amber-500 text-white hover:shadow-lg transition-all duration-300 hover:translate-y-[-2px] w-full sm:w-auto"
+                  onClick={handleClick}
+                >
+                  <span className="mr-2">Book Your Consultation</span>
+                  <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                </Button>
 
                 <Link href="/portfolio" className="text-gray-700 hover:text-gold transition-colors relative group">
                   <span>View Our Portfolio</span>
