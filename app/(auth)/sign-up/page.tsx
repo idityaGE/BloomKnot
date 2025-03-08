@@ -78,7 +78,7 @@ export default function SignUp() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <Card className="border-none md:border shadow-none md:shadow-md">
+      <Card className="border-none md:border bg-white/80 backdrop-blur-sm shadow-lg rounded-xl overflow-hidden">
         <CardHeader className="space-y-1 md:pt-6">
           <div className="hidden md:block">
             <h2 className="text-2xl font-bold text-center">Create an account</h2>

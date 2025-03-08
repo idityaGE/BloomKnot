@@ -99,36 +99,28 @@ export default function SignIn() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <Card className="border-none md:border shadow-none md:shadow-md">
-        <CardHeader className="space-y-1 md:pt-6">
-          <div className="hidden md:block">
-            <h2 className="text-2xl font-bold text-center">Welcome back</h2>
-            <p className="text-center text-gray-500 text-sm mt-1">
-              Enter your credentials to access your account
-            </p>
-          </div>
-        </CardHeader>
-        <CardContent>
+      <Card className="border-none md:border bg-white/80 backdrop-blur-sm shadow-lg rounded-xl overflow-hidden">
+        <CardContent className="pt-6 md:px-8">
           {/* Social login button */}
-          <div className="mb-4">
+          <div className="mb-6">
             <LoadingButton
-              className="w-full border-gray-300 hover:bg-gray-50"
+              className="w-full border rounded-lg py-6 bg-white text-black shadow-sm font-medium"
               pending={pendingGoogle}
               onClick={handleSignInWithGithub}
             >
-              <GithubIcon className="w-4 h-4 mr-2" />
+              <GithubIcon className="w-5 h-5 mr-3" />
               Continue with Google
             </LoadingButton>
           </div>
 
           {/* Divider */}
-          <div className="relative mb-4">
+          <div className="relative mb-6">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-200"></div>
             </div>
             <div className="relative flex justify-center">
-              <span className="bg-white px-2 text-sm text-gray-500">
-                or continue with email
+              <span className="bg-white/80 backdrop-blur-sm px-4 text-sm text-gray-500">
+                or sign in with email
               </span>
             </div>
           </div>
@@ -136,21 +128,21 @@ export default function SignIn() {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(handleCredentialsSignIn)}
-              className="space-y-4"
+              className="space-y-5"
             >
               <FormField
                 control={form.control}
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel className="text-gray-700">Email address</FormLabel>
                     <FormControl>
                       <Input
                         type="email"
                         placeholder="name@example.com"
                         {...field}
                         autoComplete="email"
-                        className="rounded-md"
+                        className="rounded-lg py-6 bg-white"
                       />
                     </FormControl>
                     <FormMessage />
@@ -164,10 +156,10 @@ export default function SignIn() {
                 render={({ field }) => (
                   <FormItem>
                     <div className="flex justify-between items-center">
-                      <FormLabel>Password</FormLabel>
+                      <FormLabel className="text-gray-700">Password</FormLabel>
                       <Link
                         href="/forgot-password"
-                        className="text-xs text-gold hover:underline"
+                        className="text-xs text-gold hover:text-gold/80 font-medium transition-colors"
                       >
                         Forgot password?
                       </Link>
@@ -178,7 +170,7 @@ export default function SignIn() {
                         placeholder="••••••••"
                         {...field}
                         autoComplete="current-password"
-                        className="rounded-md"
+                        className="rounded-lg py-6 bg-white"
                       />
                     </FormControl>
                     <FormMessage />
@@ -187,7 +179,7 @@ export default function SignIn() {
               />
 
               <LoadingButton
-                className="w-full bg-gold hover:bg-gold/90 text-white"
+                className="w-full bg-gold hover:bg-gold/90 text-white rounded-lg py-6 font-medium mt-2"
                 pending={pendingCredentials}
               >
                 Sign in
@@ -195,8 +187,8 @@ export default function SignIn() {
             </form>
           </Form>
         </CardContent>
-        <CardFooter className="flex flex-col items-center gap-2 text-center text-sm border-t border-gray-100 pt-6">
-          <p className="text-gray-600">
+        <CardFooter className="flex flex-col items-center gap-3 text-center pt-6 pb-8 border-t border-gray-100 bg-gray-50/50">
+          <p className="text-gray-700">
             Don't have an account?{" "}
             <Link href="/sign-up" className="font-medium text-gold hover:underline">
               Create account
@@ -205,9 +197,9 @@ export default function SignIn() {
 
           <Link
             href="/mail-verification"
-            className="inline-flex items-center text-xs text-gray-500 hover:text-gold"
+            className="inline-flex items-center text-xs text-gray-500 hover:text-gold transition-colors"
           >
-            <MailOpen className="w-3 h-3 mr-1" />
+            <MailOpen className="w-3 h-3 mr-1.5" />
             Need to verify your email?
           </Link>
         </CardFooter>
