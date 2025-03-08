@@ -5,7 +5,6 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-import AnimatedText from './footer/cursor-follow-text'
 
 export function Hero() {
   return (
@@ -37,17 +36,9 @@ export function Hero() {
           className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-gold blur-3xl"
         />
       </div>
-
-      {/* Animated Background Text */}
-      <div className="absolute bottom-0 w-full overflow-hidden h-36 md:h-56">
-        <AnimatedText
-          text="BLOOMKNOT"
-          className="text-[10vw] md:text-[6vw] text-gray-100/30 font-extrabold !absolute !bottom-[-2vh]"
-        />
-      </div>
-
+      
       {/* Content */}
-      <div className="relative z-10 min-h-screen flex items-center py-16 md:py-0">
+      <div className="relative min-h-screen flex items-center py-24 md:py-10">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Text Content */}

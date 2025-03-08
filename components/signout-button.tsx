@@ -1,16 +1,19 @@
-'use client'
+"use client"
 
-import { useRouter } from "next/navigation";
-import { authClient } from "@/auth-client";
-import LoadingButton from "@/components/loading-button";
-import { useState } from "react";
-import { useToast } from "@/hooks/use-toast";
-import { ErrorContext } from "@better-fetch/fetch";
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { LogOut } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import { authClient } from "@/auth-client"
 
-export default function SignoutButton() {
-  const router = useRouter();
+interface SignoutButtonProps {
+  isMobile?: boolean;
+}
+
+export default function SignoutButton({ isMobile = false }: SignoutButtonProps) {
   const [pending, setPending] = useState(false);
-  const { toast } = useToast();
+  const router = useRouter();
 
   const handleSignOut = async () => {
     try {
@@ -20,13 +23,6 @@ export default function SignoutButton() {
           onSuccess: () => {
             router.push("/sign-in");
             router.refresh();
-          },
-          onError: (ctx: ErrorContext) => {
-            toast({
-              title: "Error signing out",
-              description: ctx.error.message || "An error occurred while signing out",
-              variant: "destructive",
-            });
           }
         },
       });
@@ -38,8 +34,22 @@ export default function SignoutButton() {
   };
 
   return (
-    <LoadingButton pending={pending} onClick={handleSignOut}>
-      Sign Out
-    </LoadingButton>
-  );
+    <Button
+      variant="ghost"
+      size={isMobile ? "lg" : "sm"}
+      className={cn(
+        "text-gray-500 hover:text-red-600 hover:bg-red-50",
+        isMobile && "w-full justify-center"
+      )}
+      onClick={handleSignOut}
+      disabled={pending}
+    >
+      {pending ? "Signing Out..." : (
+        <>
+          <LogOut className="w-4 h-4 mr-2" />
+          Sign Out
+        </>
+      )}
+    </Button>
+  )
 }
