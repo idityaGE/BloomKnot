@@ -22,13 +22,16 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </head>
-      <body className={inter.className} style={{ isolation: 'isolate' }}>
+      {/* Add isolation to create proper stacking context */}
+      <body className={inter.className} style={{ isolation: 'isolate', position: 'relative' }}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
         >
-          {/* Navigation */}
-          <Navigation />
+          {/* Navigation - lowered z-index */}
+          <div className="relative z-40">
+            <Navigation />
+          </div>
 
           {/* Main content */}
           <div className="relative z-0">
