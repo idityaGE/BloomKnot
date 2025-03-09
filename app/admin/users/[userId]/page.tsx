@@ -35,7 +35,7 @@ const UserDetailsPage = () => {
         setUser(userData)
 
         // Fetch booking details for the user
-        const bookingResponse = await fetch(`/api/bookings`)
+        const bookingResponse = await fetch(`/api/bookings?userId=${userId}`)
         if (bookingResponse.ok) {
           const bookingData = await bookingResponse.json()
           setBooking(bookingData)
