@@ -30,7 +30,6 @@ import {
   CalendarClock,
   HeartHandshake
 } from "lucide-react"
-import { authClient } from "@/auth-client"
 import { useToast } from "@/hooks/use-toast"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
@@ -38,22 +37,14 @@ import Image from "next/image"
 
 export default function BookingDashboard() {
   const router = useRouter()
-  const { data: session, isPending } = authClient.useSession()
   const { toast } = useToast()
   const [booking, setBooking] = useState<any>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isRescheduling, setIsRescheduling] = useState(false)
 
   useEffect(() => {
-    if (isPending) return
-
-    if (!session?.user) {
-      router.push("/sign-in?callbackUrl=/dashboard")
-      return
-    }
-
     fetchBookingData()
-  }, [session, isPending, router])
+  }, [router])
 
   const fetchBookingData = async () => {
     try {
