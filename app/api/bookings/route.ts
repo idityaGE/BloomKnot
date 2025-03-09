@@ -81,7 +81,7 @@ export async function POST(req: NextRequest) {
 export async function GET(req: NextRequest) {
   try {
     const session = await auth.api.getSession({
-      headers: await headers() // you need to pass the headers object.
+      headers: await headers()
     })
 
     if (!session?.user) {
@@ -94,15 +94,29 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url)
     const userId = searchParams.get("userId")
 
-    // Ensure users can only view their own bookings (unless admin)
-    if (userId && userId !== session.user.id && session.user.role !== "admin") {
+    // Check if the request is coming from an admin or the user themselves
+    const isAdmin = session.user.role === "admin"
+    const isOwnBooking = userId === session.user.id
+
+    // Only allow admins to view other users' bookings
+    if (userId && !isAdmin && !isOwnBooking) {
       return NextResponse.json(
         { error: "You can only view your own bookings" },
         { status: 403 }
       )
     }
 
-    const whereClause = userId ? { userId } : session.user.role === "admin" ? {} : { userId: session.user.id }
+    // Build where clause based on role and userId parameter
+    let whereClause = {}
+
+    if (userId) {
+      // If userId is provided, filter by that userId (admin can view any user's bookings)
+      whereClause = { userId }
+    } else if (!isAdmin) {
+      // If not admin and no userId specified, only show current user's bookings
+      whereClause = { userId: session.user.id }
+    }
+    // If admin and no userId, the whereClause stays empty to get all bookings
 
     const booking = await prisma.booking.findFirst({
       where: whereClause,
@@ -118,7 +132,6 @@ export async function GET(req: NextRequest) {
       )
     }
 
-    // Return the booking directly, not wrapped in a bookings object
     return NextResponse.json(booking)
   } catch (error) {
     console.error("Error fetching bookings:", error)
