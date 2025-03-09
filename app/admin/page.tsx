@@ -285,8 +285,6 @@ export default function AdminDashboard() {
     switch (role.toLowerCase()) {
       case "admin":
         return <Badge className="bg-red-500 hover:bg-red-600">Admin</Badge>;
-      case "moderator":
-        return <Badge className="bg-blue-500 hover:bg-blue-600">Moderator</Badge>;
       default:
         return <Badge variant="outline">User</Badge>;
     }
@@ -402,7 +400,6 @@ export default function AdminDashboard() {
                   <DropdownMenuRadioGroup value={filtering.value || ""} onValueChange={handleRoleFilter}>
                     <DropdownMenuRadioItem value="">All Roles</DropdownMenuRadioItem>
                     <DropdownMenuRadioItem value="admin">Admin</DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="moderator">Moderator</DropdownMenuRadioItem>
                     <DropdownMenuRadioItem value="user">User</DropdownMenuRadioItem>
                   </DropdownMenuRadioGroup>
                 </DropdownMenuContent>
@@ -600,12 +597,6 @@ export default function AdminDashboard() {
                                     disabled={user.role?.toLowerCase() === "user"}
                                   >
                                     User
-                                  </DropdownMenuItem>
-                                  <DropdownMenuItem
-                                    onClick={() => handleSetRole(user.id, "moderator")}
-                                    disabled={user.role?.toLowerCase() === "moderator"}
-                                  >
-                                    Moderator
                                   </DropdownMenuItem>
                                   <DropdownMenuItem
                                     onClick={() => handleSetRole(user.id, "admin")}
