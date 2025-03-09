@@ -53,21 +53,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
-// Define the User type based on the received data
-interface User {
-  id: string;
-  name: string | null;
-  email: string;
-  emailVerified: boolean | null;
-  image: string | null;
-  createdAt: string;
-  updatedAt: string;
-  role: string;
-  banned: boolean | null;
-  banReason: string | null;
-  banExpires: string | null;
-}
+import type { UserWithRole } from "better-auth/plugins";
 
 // Define pagination and filter types
 interface PaginationState {
@@ -87,7 +73,7 @@ interface FilterState {
 }
 
 export default function AdminDashboard() {
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<UserWithRole[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchField, setSearchField] = useState<string>("email");
@@ -147,9 +133,8 @@ export default function AdminDashboard() {
 
       if (response?.data) {
         setUsers(response.data.users);
-        setFilteredUsers(response.data.users);
-        setTotalUsers(response.data.total || response.data.users.length);
-        setTotalPages(Math.ceil((response.data.total || response.data.users.length) / pagination.limit));
+        setTotalUsers(response.data.users.length);
+        setTotalPages(Math.ceil(response.data.users.length / pagination.limit));
       }
     } catch (err) {
       toast({
@@ -507,7 +492,7 @@ export default function AdminDashboard() {
                         </TableCell>
                         <TableCell className="font-mono text-xs">{user.email}</TableCell>
                         <TableCell>
-                          <RoleBadge role={user.role} />
+                          {user.role && <RoleBadge role={user.role} />}
                         </TableCell>
                         <TableCell>
                           <div className="flex flex-col space-y-1">
@@ -528,7 +513,7 @@ export default function AdminDashboard() {
                             </div>
                             {user.banExpires && (
                               <span className="text-xs text-muted-foreground">
-                                Until: {formatDate(user.banExpires)}
+                                Until: {formatDate(user.banExpires.toString())}
                               </span>
                             )}
                             {user.banReason && (
@@ -550,7 +535,7 @@ export default function AdminDashboard() {
                         <TableCell>
                           <div className="flex items-center gap-1 text-xs text-muted-foreground">
                             <Calendar className="h-3.5 w-3.5" />
-                            {formatDate(user.createdAt)}
+                            {formatDate(user.createdAt.toString())}
                           </div>
                         </TableCell>
                         <TableCell className="text-right">
@@ -612,19 +597,19 @@ export default function AdminDashboard() {
                                 <DropdownMenuSubContent>
                                   <DropdownMenuItem
                                     onClick={() => handleSetRole(user.id, "user")}
-                                    disabled={user.role.toLowerCase() === "user"}
+                                    disabled={user.role?.toLowerCase() === "user"}
                                   >
                                     User
                                   </DropdownMenuItem>
                                   <DropdownMenuItem
                                     onClick={() => handleSetRole(user.id, "moderator")}
-                                    disabled={user.role.toLowerCase() === "moderator"}
+                                    disabled={user.role?.toLowerCase() === "moderator"}
                                   >
                                     Moderator
                                   </DropdownMenuItem>
                                   <DropdownMenuItem
                                     onClick={() => handleSetRole(user.id, "admin")}
-                                    disabled={user.role.toLowerCase() === "admin"}
+                                    disabled={user.role?.toLowerCase() === "admin"}
                                   >
                                     Admin
                                   </DropdownMenuItem>
@@ -733,7 +718,7 @@ export default function AdminDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {users.filter(u => u.role.toLowerCase() === 'admin').length}
+              {users.filter(u => (u.role ?? '').toLowerCase() === 'admin').length}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
               With full system access
