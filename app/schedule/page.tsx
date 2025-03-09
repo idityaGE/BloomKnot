@@ -1,9 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import Cal, { getCalApi } from "@calcom/embed-react";
-import { authClient } from "@/auth-client";
 import {
   Loader2,
   Calendar,
@@ -17,10 +15,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
+import Link from "next/link";
 
 export default function SchedulePage() {
-  const router = useRouter();
-  const { data: session, isPending } = authClient.useSession();
   const { toast } = useToast();
   const [isUpdating, setIsUpdating] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -29,12 +26,6 @@ export default function SchedulePage() {
   const [calInitialized, setCalInitialized] = useState(false);
 
   useEffect(() => {
-    if (isPending) return;
-
-    if (!session?.user) {
-      router.push("/sign-in?callbackUrl=/schedule");
-      return;
-    }
 
     setIsLoading(false);
 
@@ -81,7 +72,7 @@ export default function SchedulePage() {
         },
       });
     })();
-  }, [session, isPending, router]);
+  }, []);
 
   // Updated handleConsultationScheduled function
   const handleConsultationScheduled = async (consultDate: string) => {
@@ -138,11 +129,6 @@ export default function SchedulePage() {
     } finally {
       setIsUpdating(false);
     }
-  };
-
-  // Navigate to dashboard
-  const goToDashboard = () => {
-    router.push("/dashboard");
   };
 
   if (isLoading) {
@@ -211,12 +197,13 @@ export default function SchedulePage() {
             </CardContent>
 
             <CardFooter className="flex justify-center pt-2 pb-6">
-              <Button
-                onClick={goToDashboard}
-                className="bg-gold hover:bg-gold/90 text-white px-6"
-              >
-                Go to Dashboard <ChevronRight className="ml-2 h-4 w-4" />
-              </Button>
+              <Link href="/dashboard">
+                <Button
+                  className="bg-gold hover:bg-gold/90 text-white px-6"
+                >
+                  Go to Dashboard <ChevronRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
             </CardFooter>
           </Card>
 
@@ -311,13 +298,14 @@ export default function SchedulePage() {
         </motion.div>
 
         <div className="mt-8 text-center">
-          <Button
-            variant="outline"
-            onClick={goToDashboard}
-            className="text-gray-700 border-gray-300"
-          >
-            Back to Dashboard
-          </Button>
+          <Link href="/dashboard">
+            <Button
+              variant="outline"
+              className="text-gray-700 border-gray-300"
+            >
+              Back to Dashboard
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ import { prisma } from "@/lib/db"
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
   try {
     const session = await auth.api.getSession({
@@ -20,7 +20,7 @@ export async function GET(
       )
     }
 
-    const userId = params.userId
+    const { userId } = await params
 
     // Fetch the user data
     const user = await prisma.user.findUnique({

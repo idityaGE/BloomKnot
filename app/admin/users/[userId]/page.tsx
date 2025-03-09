@@ -97,7 +97,7 @@ const UserDetailsPage = () => {
           <CardContent>
             <User className="h-16 w-16 text-gray-300 mx-auto mb-4" />
             <h2 className="text-xl font-medium mb-2">User Not Found</h2>
-            <p className="text-muted-foreground mb-6">The requested user does not exist or you don't have permission to view it.</p>
+            <p className="text-muted-foreground mb-6">The requested user does not exist or you don&apos;t have permission to view it.</p>
             <Link href="/admin">
               <Button>Return to Admin Dashboard</Button>
             </Link>
@@ -193,7 +193,7 @@ const UserDetailsPage = () => {
               <CardContent>
                 <h3 className="text-xl font-medium mb-4">No Booking Found</h3>
                 <p className="text-muted-foreground mb-2">
-                  This user hasn't made a wedding booking yet.
+                  This user hasn&apos;t made a wedding booking yet.
                 </p>
               </CardContent>
             </Card>
