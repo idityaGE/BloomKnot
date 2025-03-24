@@ -66,10 +66,10 @@ export function Hero() {
                   </Button>
                 </Link>
 
-                <Link href="/portfolio" className="text-gray-700 hover:text-gold transition-colors relative group">
+                {/* <Link href="/portfolio" className="text-gray-700 hover:text-gold transition-colors relative group">
                   <span>View Our Portfolio</span>
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all group-hover:w-full"></span>
-                </Link>
+                </Link> */}
               </motion.div>
             </div>
 

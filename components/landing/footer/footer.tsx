@@ -8,16 +8,16 @@ const navigation = {
   main: [
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
-    { name: "Portfolio", href: "/portfolio" },
-    { name: "Testimonials", href: "/testimonials" },
-    { name: "Blog", href: "/blog" },
+    // { name: "Portfolio", href: "/portfolio" },
+    // { name: "Testimonials", href: "/testimonials" },
+    // { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ],
   services: [
-    { name: "Full Planning", href: "/services/full-planning" },
-    { name: "Partial Planning", href: "/services/partial-planning" },
-    { name: "Day-of Coordination", href: "/services/day-of-coordination" },
-    { name: "Destination Weddings", href: "/services/destination-weddings" },
+    { name: "Full Planning", href: "#" },
+    { name: "Partial Planning", href: "#" },
+    { name: "Day-of Coordination", href: "#" },
+    { name: "Destination Weddings", href: "#" },
   ],
   social: [
     {

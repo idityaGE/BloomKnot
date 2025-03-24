@@ -262,7 +262,7 @@ export default function SchedulePage() {
                 {calInitialized ? (
                   <Cal
                     namespace="30min"
-                    calLink="idityage/30min"
+                    calLink="bloomknot/30min"
                     style={{ width: "100%", height: "100%", overflow: "scroll" }}
                     config={{
                       layout: "month_view",
