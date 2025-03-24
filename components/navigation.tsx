@@ -10,8 +10,8 @@ import MobileMenuPortal from "./mobile-menu-portal"
 const navigation = [
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
-  { name: "Testimonials", href: "/testimonials" },
-  { name: "Blog", href: "/blog" },
+  // { name: "Testimonials", href: "/testimonials" },
+  // { name: "Blog", href: "/blog" },
   { name: "Contact", href: "/contact" },
 ]
 
