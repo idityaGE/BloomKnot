@@ -339,12 +339,81 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="container mx-auto py-6 space-y-6 pt-24 px-5">
+    <div className="container mx-auto py-6 space-y-6 pt-24 px-5 md:px-10">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-        <div>
+        <div className="pl-1">
           <h1 className="text-3xl font-bold tracking-tight">Admin Dashboard</h1>
           <p className="text-muted-foreground mt-1">Manage your BloomKnot platform</p>
         </div>
+      </div>
+
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              Total Users
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{totalUsers}</div>
+            <p className="text-xs text-muted-foreground mt-1">
+              {users.filter(u => u.emailVerified).length} verified users
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              Administrators
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">
+              {users.filter(u => (u.role ?? '').toLowerCase() === 'admin').length}
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">
+              With full system access
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              Banned Users
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">
+              {users.filter(u => u.banned).length}
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">
+              Currently restricted from access
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              New This Month
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">
+              {users.filter(u => {
+                const date = new Date(u.createdAt);
+                const now = new Date();
+                return date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear();
+              }).length}
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">
+              Users registered in {new Date().toLocaleString('default', { month: 'long' })}
+            </p>
+          </CardContent>
+        </Card>
       </div>
 
       <Card className="border shadow-sm">
@@ -684,75 +753,6 @@ export default function AdminDashboard() {
           </div>
         </CardFooter>
       </Card>
-
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Total Users
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{totalUsers}</div>
-            <p className="text-xs text-muted-foreground mt-1">
-              {users.filter(u => u.emailVerified).length} verified users
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Administrators
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              {users.filter(u => (u.role ?? '').toLowerCase() === 'admin').length}
-            </div>
-            <p className="text-xs text-muted-foreground mt-1">
-              With full system access
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Banned Users
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              {users.filter(u => u.banned).length}
-            </div>
-            <p className="text-xs text-muted-foreground mt-1">
-              Currently restricted from access
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              New This Month
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              {users.filter(u => {
-                const date = new Date(u.createdAt);
-                const now = new Date();
-                return date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear();
-              }).length}
-            </div>
-            <p className="text-xs text-muted-foreground mt-1">
-              Users registered in {new Date().toLocaleString('default', { month: 'long' })}
-            </p>
-          </CardContent>
-        </Card>
-      </div>
     </div>
   );
 }

@@ -38,7 +38,7 @@ export default function AboutPage() {
             What started as a small team of dedicated planners has blossomed into a full-service wedding planning company, orchestrating breathtaking celebrations across the country.
           </p>
           <p className="text-muted-foreground">
-            Our name "BloomKnot" represents the beautiful union of two lives coming together, like flowers blooming and intertwining in perfect harmony.
+            Our name &quot;BloomKnot&quot; represents the beautiful union of two lives coming together, like flowers blooming and intertwining in perfect harmony.
           </p>
         </div>
         <div className="relative w-full h-[400px] rounded-xl overflow-hidden">
@@ -61,7 +61,7 @@ export default function AboutPage() {
             </div>
             <h3 className="text-xl font-medium mb-3">Personalized Planning</h3>
             <p className="text-muted-foreground">
-              We believe no two weddings should be the same. We take time to understand your vision, preferences, and story to create a celebration that's uniquely yours.
+              We believe no two weddings should be the same. We take time to understand your vision, preferences, and story to create a celebration that&apos;s uniquely yours.
             </p>
           </div>
           <div className="bg-white/50 p-8 rounded-xl border border-gray-100 shadow-sm">
@@ -115,7 +115,7 @@ export default function AboutPage() {
       <div className="text-center bg-gold/10 rounded-2xl p-12 mb-16">
         <h2 className="text-3xl font-bold mb-4">Ready to Plan Your Dream Wedding?</h2>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-          Let's create a celebration that reflects your unique love story and exceeds your expectations.
+          Let&apos;s create a celebration that reflects your unique love story and exceeds your expectations.
         </p>
         <Link href="/dashboard">
           <Button className="bg-gold hover:bg-gold/90 text-white">

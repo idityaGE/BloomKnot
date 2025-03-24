@@ -109,7 +109,7 @@ export default function ServicesPage() {
                       <Star key={i} className="h-4 w-4 inline-block fill-gold" />
                     ))}
                   </div>
-                  <p className="italic mb-4">"{testimonial.quote}"</p>
+                  <p className="italic mb-4">&quot;{testimonial.quote}&quot;</p>
                   <p className="text-sm font-medium">— {testimonial.couple}</p>
                 </div>
               </div>
