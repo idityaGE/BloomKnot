@@ -96,10 +96,9 @@ export async function GET(req: NextRequest) {
 
     // Check if the request is coming from an admin or the user themselves
     const isAdmin = session.user.role === "admin"
-    const isOwnBooking = userId === session.user.id
 
     // Only allow admins to view other users' bookings
-    if (userId && !isAdmin && !isOwnBooking) {
+    if (userId && !isAdmin) {
       return NextResponse.json(
         { error: "You can only view your own bookings" },
         { status: 403 }
@@ -109,10 +108,10 @@ export async function GET(req: NextRequest) {
     // Build where clause based on role and userId parameter
     let whereClause = {}
 
-    if (userId) {
+    if (userId && isAdmin) {
       // If userId is provided, filter by that userId (admin can view any user's bookings)
       whereClause = { userId }
-    } else if (!isAdmin) {
+    } else {
       // If not admin and no userId specified, only show current user's bookings
       whereClause = { userId: session.user.id }
     }
@@ -120,9 +119,6 @@ export async function GET(req: NextRequest) {
 
     const booking = await prisma.booking.findFirst({
       where: whereClause,
-      orderBy: {
-        createdAt: "desc",
-      },
     })
 
     if (!booking) {
