@@ -12,10 +12,8 @@ import {
 import { Button } from "@/components/ui/button"
 import { InfoIcon, X, ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
-import Markdown from "react-markdown"
 import { motion } from "framer-motion"
-import remarkGfm from "remark-gfm"
-import rehypeRaw from "rehype-raw"
+import MarkdownRender from "@/components/ui/markdown"
 
 // Import Swiper components
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -24,8 +22,8 @@ import "swiper/css"
 import "swiper/css/pagination"
 import "swiper/css/navigation"
 
-// Define an interface for the theme data
-interface ThemeData {
+// Define an interface for the details data
+interface Data {
   id: string
   title: string
   description: string
@@ -33,56 +31,12 @@ interface ThemeData {
   images: string[]
 }
 
-interface ThemeDetailsDialogProps {
-  theme: ThemeData
+interface DetailsDialogProps {
+  details: Data
 }
 
-export function ThemeDetailsDialog({ theme }: ThemeDetailsDialogProps) {
+export function DetailsDialog({ details }: DetailsDialogProps) {
   const [open, setOpen] = React.useState(false)
-
-  // Define Markdown component renderers with improved typing
-  const MarkdownComponents: Record<string, React.ComponentType<any>> = {
-    // Custom heading renderer with primary color
-    h1: ({ node, ...props }) => (
-      <h1 className="text-2xl font-bold text-foreground mt-6 mb-4" {...props} />
-    ),
-    h2: ({ node, ...props }) => (
-      <h2 className="text-xl font-bold text-foreground mt-5 mb-3" {...props} />
-    ),
-    h3: ({ node, ...props }) => (
-      <h3 className="text-lg font-semibold text-primary mt-4 mb-2" {...props} />
-    ),
-
-    // Custom paragraph with proper spacing
-    p: ({ node, ...props }) => (
-      <p className="text-muted-foreground mb-4 leading-relaxed" {...props} />
-    ),
-
-    // Enhance strong text
-    strong: ({ node, ...props }) => (
-      <strong className="font-semibold text-foreground" {...props} />
-    ),
-
-    // Better list styling with custom bullets
-    ul: ({ node, ...props }) => (
-      <ul className="space-y-2 mb-4 ml-1" {...props} />
-    ),
-    li: ({ node, children, ...props }) => (
-      <li className="flex items-start gap-2 text-muted-foreground">
-        <span className="text-primary mt-1">•</span>
-        <span>{children}</span>
-      </li>
-    ),
-
-    // Handle emoji sections specially
-    em: ({ node, children }) => {
-      // Check if the content is likely an emoji section header
-      if (typeof children === 'string' && children.includes('🔹')) {
-        return <div className="text-primary font-medium mt-4 mb-2">{children}</div>;
-      }
-      return <em className="italic text-muted-foreground">{children}</em>;
-    },
-  };
 
   return (
     <>
@@ -106,9 +60,9 @@ export function ThemeDetailsDialog({ theme }: ThemeDetailsDialogProps) {
             <div className="flex items-center justify-between">
               <div>
                 <DialogTitle className="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80">
-                  {theme.title}
+                  {details.title}
                 </DialogTitle>
-                <DialogDescription className="text-sm mt-1">{theme.description}</DialogDescription>
+                <DialogDescription className="text-sm mt-1">{details.description}</DialogDescription>
               </div>
               <DialogClose asChild>
                 <Button variant="ghost" size="icon" className="rounded-full h-8 w-8 hover:bg-muted/80">
@@ -122,32 +76,26 @@ export function ThemeDetailsDialog({ theme }: ThemeDetailsDialogProps) {
           <div className="flex-1 overflow-y-auto">
             <div className="p-4 md:p-6 space-y-6">
               {/* Images section */}
-              {theme.images.length > 0 && (
+              {details.images.length > 0 && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4 }}
                   className="relative w-full h-56 sm:h-64 md:h-80 lg:h-96 rounded-xl overflow-hidden shadow-md"
                 >
-                  <ImageGallery images={theme.images} title={theme.title} />
+                  <ImageGallery images={details.images} title={details.title} />
                 </motion.div>
               )}
 
               {/* Details section */}
-              {theme.detailedDescription && (
+              {details.detailedDescription && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.2 }}
                 >
                   <div className="prose prose-sm md:prose-base max-w-none">
-                    <Markdown
-                      remarkPlugins={[remarkGfm]}
-                      rehypePlugins={[rehypeRaw]}
-                      components={MarkdownComponents}
-                    >
-                      {theme.detailedDescription}
-                    </Markdown>
+                    <MarkdownRender content={details.description} />
                   </div>
                 </motion.div>
               )}

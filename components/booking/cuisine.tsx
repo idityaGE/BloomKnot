@@ -6,37 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Textarea } from "@/components/ui/textarea"
 import { useState } from "react"
 import Image from "next/image"
-
-const cuisineTypes = [
-  {
-    id: "indian",
-    title: "Indian",
-    description: "A rich blend of traditional Indian flavors and spices",
-    image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&q=80",
-    variants: ["North Indian", "South Indian", "Indo-Chinese"]
-  },
-  {
-    id: "continental",
-    title: "Continental",
-    description: "Elegant European and American fine dining experience",
-    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80",
-    variants: ["French", "Italian", "Mediterranean"]
-  },
-  {
-    id: "asian",
-    title: "Asian",
-    description: "Diverse flavors from across Asia",
-    image: "https://images.unsplash.com/photo-1512003867696-6d5ce6835040?auto=format&fit=crop&q=80",
-    variants: ["Chinese", "Japanese", "Thai"]
-  },
-  {
-    id: "fusion",
-    title: "Fusion",
-    description: "Creative blend of multiple cuisines",
-    image: "https://images.unsplash.com/photo-1539755530862-00f623c00f52?auto=format&fit=crop&q=80",
-    variants: ["Modern Fusion", "Contemporary Mix"]
-  }
-]
+import { CUSISINES } from "@/config/booking-details/cuisine"
 
 interface CuisineProps {
   formData: any
@@ -54,7 +24,7 @@ export function Cuisine({ formData, updateFormData }: CuisineProps) {
 
     // Filter out variants that belong to cuisines that are no longer selected
     const newVariants = selectedVariants.filter(variant => {
-      const parentCuisine = cuisineTypes.find(c =>
+      const parentCuisine = CUSISINES.find(c =>
         c.variants.includes(variant) && newSelected.includes(c.id)
       )
       return !!parentCuisine
@@ -76,7 +46,7 @@ export function Cuisine({ formData, updateFormData }: CuisineProps) {
   }
 
   // Get all variants for the selected cuisines
-  const availableVariants = cuisineTypes
+  const availableVariants = CUSISINES
     .filter(c => selected.includes(c.id))
     .flatMap(c => c.variants)
 
@@ -87,7 +57,7 @@ export function Cuisine({ formData, updateFormData }: CuisineProps) {
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {cuisineTypes.map((cuisine) => (
+        {CUSISINES.map((cuisine) => (
           <Card
             key={cuisine.id}
             className={`relative overflow-hidden transition-all ${selected.includes(cuisine.id) ? "ring-2 ring-primary" : ""}`}
