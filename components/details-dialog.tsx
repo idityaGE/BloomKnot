@@ -95,7 +95,7 @@ export function DetailsDialog({ details }: DetailsDialogProps) {
                   transition={{ duration: 0.4, delay: 0.2 }}
                 >
                   <div className="prose prose-sm md:prose-base max-w-none">
-                    <MarkdownRender content={details.description} />
+                    <MarkdownRender content={details.detailedDescription} />
                   </div>
                 </motion.div>
               )}

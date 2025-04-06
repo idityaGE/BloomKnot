@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import Image from "next/image"
 import { LOCATIONS } from "@/config/booking-details/location"
+import { DetailsDialog } from "@/components/details-dialog"
 
 interface LocationProps {
   formData: any
@@ -44,6 +45,12 @@ export function Location({ formData, updateFormData }: LocationProps) {
                 <p className="mt-2 text-sm text-muted-foreground">
                   {location.description}
                 </p>
+                <div className="mt-2 flex items-center justify-between">
+                  <span className="text-sm text-muted-foreground capitalize">
+                    {location.id} setting
+                  </span>
+                  <DetailsDialog details={location} />
+                </div>
               </div>
             </Card>
           </Label>

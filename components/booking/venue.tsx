@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/select"
 import Image from "next/image"
 import { VENUES } from "@/config/booking-details/venue"
+import { DetailsDialog } from "@/components/details-dialog"
 
 
 interface VenueProps {
@@ -109,9 +110,13 @@ export function Venue({ formData, updateFormData }: VenueProps) {
                 <p className="mt-2 text-sm text-muted-foreground">
                   {venue.description}
                 </p>
-                <div className="mt-2 flex items-center gap-4 text-sm">
-                  <span>Capacity: {venue.capacity}</span>
-                  <span>Style: {venue.style}</span>
+                <div className="mt-2 flex items-center justify-between">
+                  <div className="flex items-center gap-4 text-sm">
+                    <span>Capacity: {venue.capacity}</span>
+                    <span className="capitalize">Style: {venue.style}</span>
+                  </div>
+
+                  <DetailsDialog details={venue} />
                 </div>
               </div>
             </Card>
