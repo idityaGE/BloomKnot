@@ -22,11 +22,12 @@ export const THEMES = [
 * Ornate gold or silver frames for table numbers and signage
 
 This theme offers **sophisticated glamour** while remaining **eternally stylish**. Perfect for couples who appreciate tradition with a touch of luxury. ✨👰🤵`,
-    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80",
+    image: "https://i.pinimg.com/736x/2b/ee/01/2bee010666a96ea4e54eab7254da8f9b.jpg",
     images: [
-      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&q=80"
+      "https://i.pinimg.com/736x/2b/ee/01/2bee010666a96ea4e54eab7254da8f9b.jpg",
+      "https://lh7-rt.googleusercontent.com/docsz/AD_4nXdPUGiWaqLFq6Q2CA-w8CSCfelPc3fwXo3ggj0wdXGkl6X97PbeA84m-77wx2wAXo9L7x0W8VYr_lpnpVv-w-xWbumhTvsmR13DXWUlzk2uzWYUi_Wd0F-DA4mVGhFwQ97TgYYkusBTISjTjZzAQgtPVdA?key=kpJbJ-mZ5hIA9N3QxSvgcg",
+      "https://shaadiwish.com/blog/wp-content/uploads/2022/11/White-and-gold-1-768x960.jpg",
+      "https://i.pinimg.com/736x/22/00/f2/2200f2c6afac3a313fbcebd70ace1249.jpg"
     ],
     colors: ["#FFFFFF", "#D4AF37", "#000000"]
   },
@@ -54,11 +55,12 @@ This theme offers **sophisticated glamour** while remaining **eternally stylish*
 * Wooden signage with handwritten or calligraphy text
 
 This theme creates a **cozy, nostalgic atmosphere** that feels authentic and personal. Ideal for couples who value natural beauty and relaxed elegance. 🌿🌾`,
-    image: "https://images.unsplash.com/photo-1464699908537-0954e50791ee?auto=format&fit=crop&q=80",
+    image: "https://redearth.in/blog/wp-content/uploads/2021/08/redearth-Junglewedding.jpg",
     images: [
-      "https://images.unsplash.com/photo-1464699908537-0954e50791ee?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1505944357431-27579db47222?auto=format&fit=crop&q=80"
+      "https://redearth.in/blog/wp-content/uploads/2021/08/redearth-Junglewedding.jpg",
+      "https://i0.wp.com/solievents.com/wp-content/uploads/2018/08/barn-wedding-nj-the-barn-at-perona-farms.jpg?resize=800,533&ssl=1",
+      "https://img.freepik.com/premium-photo/wedding-venue-with-rustic-wooden-elements_1104763-27247.jpg",
+      "https://i.pinimg.com/736x/8f/2b/f1/8f2bf14b4ac641686c4389106d24ba5e.jpg"
     ],
     colors: ["#8B4513", "#DEB887", "#556B2F"]
   },
@@ -88,11 +90,11 @@ This theme creates a **cozy, nostalgic atmosphere** that feels authentic and per
 * Black and white photography as decor
 
 This theme creates a **bold, sophisticated atmosphere** that feels current and fashion-forward. Perfect for style-conscious couples who appreciate contemporary design. ⬜⬛🔷`,
-    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80",
+    image: "https://www.brides.com/thmb/cOsh8gFZAXlVInxLd-rGhHxdpNc=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Carolyn-Vic_18-0ce25776afe648c49f4a6753a2569438.jpg",
     images: [
-      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1548685916-46ff34868249?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1580824456689-d0a82c8c7398?auto=format&fit=crop&q=80"
+      "https://www.brides.com/thmb/cOsh8gFZAXlVInxLd-rGhHxdpNc=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Carolyn-Vic_18-0ce25776afe648c49f4a6753a2569438.jpg",
+      "https://www.brides.com/thmb/P9u4mOI67HFkGhFJ4PRmP4_TkQg=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/515-RachelElie-WeddingSubmission-35-0578506c84944233b93fedb1ac9c9143.jpg",
+      "https://i.pinimg.com/474x/0f/9d/24/0f9d24bcb7b06d331ab9425859e4afe0.jpg"
     ],
     colors: ["#808080", "#FFFFFF", "#000000"]
   },
@@ -123,11 +125,12 @@ This theme creates a **bold, sophisticated atmosphere** that feels current and f
 * Antique or weathered elements with character
 
 This theme creates a **soft, enchanting atmosphere** that feels like a fairytale garden. Perfect for romantic couples who love florals and dreamy settings. 🌹🌿✨`,
-    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80",
+    image: "https://www.brides.com/thmb/zTiXwE4ghQ67JVD20N5yKRR_Oqg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/romantic-european-inspired-california-wedding-long-reception-tables-erica-streelman-0823-c1a0871976d54fffbc32897fd6a0d956.jpeg",
     images: [
-      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80"
+      "https://www.brides.com/thmb/zTiXwE4ghQ67JVD20N5yKRR_Oqg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/romantic-european-inspired-california-wedding-long-reception-tables-erica-streelman-0823-c1a0871976d54fffbc32897fd6a0d956.jpeg",
+      "https://www.theknot.com/tk-media/images/8ac32cc0-5878-11ed-8e86-e7c4c36e1984~rs_1094.h",
+      "https://cdn.shopify.com/s/files/1/0289/4508/8596/files/romantic-blus-wedding-color-ideas-1_480x480.jpg?v=1634368907",
+      "https://i.pinimg.com/736x/42/cc/8b/42cc8bbc89cd44a3c9fef91c18e4b29c.jpg"
     ],
     colors: ["#FFB6C1", "#FFC0CB", "#FF69B4"]
   },
@@ -146,11 +149,12 @@ This theme creates a **soft, enchanting atmosphere** that feels like a fairytale
 * Soft pastels like **ivory, blush pink, peach, and powder blue**, paired with **gold or antique bronze accents** for a regal touch.
 
 This fusion theme offers the **romantic elegance of Regency-era England** while embracing the **rich traditions of an Indian wedding**, making it a **truly royal affair**. 👑✨`,
-    image: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80",
+    image: "https://images.squarespace-cdn.com/content/v1/66101b5bd70af22c0086193d/608f6c7d-0e3c-4a3e-9d4f-f268ed8f60e7/0620_JV205353+copy.jpg?format=1000w",
     images: [
-      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1517264584205-97702c77a6a1?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1598897516650-e4dc73d8e417?auto=format&fit=crop&q=80"
+      "https://images.squarespace-cdn.com/content/v1/66101b5bd70af22c0086193d/608f6c7d-0e3c-4a3e-9d4f-f268ed8f60e7/0620_JV205353+copy.jpg?format=1000w",
+      "https://static.wixstatic.com/media/0ceb11_55a125112f8145e1adf86e3e7933b2ef~mv2.png/v1/fill/w_761,h_564,fp_0.50_0.50,q_95,enc_avif,quality_auto/0ceb11_55a125112f8145e1adf86e3e7933b2ef~mv2.png",
+      "https://cdn.shopify.com/s/files/1/0212/2616/0192/files/image7-7_8eb480f5-039e-4197-b4b7-54d29989f2c3.jpg?v=1651880618",
+      "https://i.pinimg.com/736x/42/e6/a7/42e6a71685d1dde00b1d36d14e0320f7.jpg"
     ],
     colors: ["#F5F5DC", "#FFB6C1", "#D4AF37"]
   },

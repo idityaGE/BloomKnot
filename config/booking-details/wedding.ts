@@ -6,8 +6,8 @@ export const WEDDINGTYPE = [
     image: "https://assets.minted.com/image/upload/q_auto/Minted_Onsite_Assets/2023/LP/Wedding/AffordableWeddingVenues_230221_Image11.jpg",
   },
   {
-    id: "religious",
-    title: "Religious",
+    id: "classic",
+    title: "Classic",
     description: "A traditional ceremony honoring your faith and customs",
     image: "https://assets.brideandblossom.com/wp-content/uploads/2019/03/26110048/Rashna-Sean-Wedding-Ceremony-Bronx-Zoo-Dideo-Films-Photography-33.jpg",
   },

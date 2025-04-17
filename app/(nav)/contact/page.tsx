@@ -264,7 +264,7 @@ const ContactPage = () => {
                       </div>
                       <div>
                         <h3 className="font-medium text-gray-900">Our Location</h3>
-                        <p className="text-gray-600 mt-1">123 Wedding Way, Celebration City, AB 12345</p>
+                        <p className="text-gray-600 mt-1">Jaipur, Rajasthan</p>
                       </div>
                     </div>
 
@@ -274,7 +274,7 @@ const ContactPage = () => {
                       </div>
                       <div>
                         <h3 className="font-medium text-gray-900">Phone Number</h3>
-                        <p className="text-gray-600 mt-1">+1 (555) 123-4567</p>
+                        <p className="text-gray-600 mt-1">+91 8306919764</p>
                       </div>
                     </div>
 
@@ -284,7 +284,7 @@ const ContactPage = () => {
                       </div>
                       <div>
                         <h3 className="font-medium text-gray-900">Email Address</h3>
-                        <p className="text-gray-600 mt-1">hello@bloomknot.com</p>
+                        <p className="text-gray-600 mt-1">mohatosh@bloomknot.in</p>
                       </div>
                     </div>
 
@@ -318,28 +318,6 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* Map Section */}
-      <section className="px-4 md:px-6 pb-20">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="rounded-xl overflow-hidden shadow-md h-80 md:h-96 border border-gray-100"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1391.8924321338914!2d75.03166545576303!3d26.62681834048882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c09d2ae57438f%3A0xe01d485d4c13972a!2sCaptain%20Vikram%20Batra(B5)%20Hostel%20CURAJ!5e1!3m2!1sen!2sin!4v1741469703593!5m2!1sen!2sin"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="BloomKnot Location"
-            />
-          </motion.div>
-        </div>
-      </section>
     </div>
   );
 };
