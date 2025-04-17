@@ -45,6 +45,7 @@ export async function POST(req: NextRequest) {
     let booking;
 
     if (existingBooking) {
+// TODO: Fix the route and update the price also which comming from the Summary page
       // Update existing booking
       booking = await prisma.booking.update({
         where: {

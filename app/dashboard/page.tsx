@@ -46,6 +46,7 @@ export default function BookingDashboard() {
       }
 
       const data = await response.json()
+      console.log(JSON.parse(data.formData))
       setBooking(data)
     } catch (error) {
       console.error("Error fetching booking:", error)
