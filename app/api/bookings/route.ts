@@ -1,13 +1,12 @@
-// app/api/bookings/route.ts
 import { NextRequest, NextResponse } from "next/server"
-import { auth } from "@/auth"; // path to your Better Auth server instance
+import { auth } from "@/auth";
 import { headers } from "next/headers";
 import { prisma } from "@/lib/db"
 
 export async function POST(req: NextRequest) {
   try {
     const session = await auth.api.getSession({
-      headers: await headers() // you need to pass the headers object.
+      headers: await headers()
     })
 
     if (!session?.user) {
@@ -19,7 +18,6 @@ export async function POST(req: NextRequest) {
 
     const body = await req.json()
 
-    // Validate required fields
     if (!body.formData || !body.userId) {
       return NextResponse.json(
         { error: "Missing required fields" },
@@ -27,7 +25,6 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Ensure the user can only create bookings for themselves
     if (body.userId !== session.user.id && session.user.role !== "admin") {
       return NextResponse.json(
         { error: "You can only create bookings for your own account" },
@@ -35,7 +32,6 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Check if booking already exists for this user
     const existingBooking = await prisma.booking.findUnique({
       where: {
         userId: body.userId
@@ -45,25 +41,24 @@ export async function POST(req: NextRequest) {
     let booking;
 
     if (existingBooking) {
-// TODO: Fix the route and update the price also which comming from the Summary page
-      // Update existing booking
       booking = await prisma.booking.update({
         where: {
           userId: body.userId
         },
         data: {
-          formData: body.formData, // This will be stored as a JSON field
+          formData: body.formData,
           status: body.status || "pending",
+          totalAmount: body.totalAmount || "0"
         },
       });
       console.log("Updated existing booking:", booking.id);
     } else {
-      // Create new booking
       booking = await prisma.booking.create({
         data: {
           userId: body.userId,
-          formData: body.formData, // This will be stored as a JSON field
+          formData: body.formData,
           status: body.status || "pending",
+          totalAmount: body.totalAmount || "0"
         },
       });
       console.log("Created new booking:", booking.id);
@@ -95,10 +90,10 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url)
     const userId = searchParams.get("userId")
 
-    // Check if the request is coming from an admin or the user themselves
+
     const isAdmin = session.user.role === "admin"
 
-    // Only allow admins to view other users' bookings
+
     if (userId && !isAdmin) {
       return NextResponse.json(
         { error: "You can only view your own bookings" },
@@ -106,17 +101,16 @@ export async function GET(req: NextRequest) {
       )
     }
 
-    // Build where clause based on role and userId parameter
+
     let whereClause = {}
 
     if (userId && isAdmin) {
-      // If userId is provided, filter by that userId (admin can view any user's bookings)
+
       whereClause = { userId }
     } else {
-      // If not admin and no userId specified, only show current user's bookings
+
       whereClause = { userId: session.user.id }
     }
-    // If admin and no userId, the whereClause stays empty to get all bookings
 
     const booking = await prisma.booking.findFirst({
       where: whereClause,

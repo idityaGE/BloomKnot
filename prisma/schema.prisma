@@ -79,6 +79,7 @@ model Booking {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   formData     Json
   status       String   @default("pending") // pending, confirmed, completed, cancelled
+  totalAmount  String?
   consultDate  DateTime?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt

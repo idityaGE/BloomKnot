@@ -88,8 +88,8 @@ const ConsultationCard = ({
             <p className="text-3xl font-bold mb-1 text-gold">
               {new Intl.NumberFormat('en-US', {
                 style: 'currency',
-                currency: 'USD'
-              }).format(parseFloat(formData.totalAmount || "0"))}
+                currency: 'INR'
+              }).format(parseFloat(booking.totalAmount || "0"))}
             </p>
             <p className="text-xs text-muted-foreground">Total wedding package</p>
           </div>
